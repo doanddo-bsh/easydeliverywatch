@@ -3,14 +3,16 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../pages/myMainPage.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
+  await initializeDateFormatting(); // 달력 한국어 활용 목적
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp]); // 가로모드 막기
   MobileAds.instance.initialize();
   MobileAds.instance.updateRequestConfiguration(
-      RequestConfiguration(testDeviceIds: ['02C9012E-2668-44F4-AEB6-89E2C7CF4FBD']));
+      RequestConfiguration(testDeviceIds: ['6d23c6959e778862ff6923e765af75f3']));
   runApp(const MyApp());
 }
 
@@ -29,12 +31,15 @@ class MyApp extends StatelessWidget {
     //   ),
     //   home: const MyHomePage(),
     // );
+
+    // 변경 후
     return ScreenUtilInit(
         designSize: Size(390, 844),
         builder: (context, child) => MaterialApp(
           title: 'easy Delivery Watch',
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
             useMaterial3: true,
           ),
           builder: (context, child){

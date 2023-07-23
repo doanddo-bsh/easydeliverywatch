@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:collection/collection.dart';
-// import 'dart:collection';
+import 'dart:collection';
 import '../module/udf.dart';
 import '../module/color_def.dart';
 import '../module/admob_class.dart';
 import '../module/timerModul.dart';
 import '../module/customAlertDialog.dart';
+import '../module/sqliteDayTime.dart';
+import 'secondCalendar.dart';
 
 class MyMainPage extends StatelessWidget {
   const MyMainPage({Key? key}) : super(key: key);
@@ -36,21 +38,21 @@ class _MyMainPageBodyState extends State<MyMainPageBody> {
     TimerModule timer = Provider.of<TimerModule>(context);
     final List<List<int>> lapTime = timer.lapTime;
 
-    Admob admob = Admob(context: context);
-    BannerAd banner = admob.getBanner(context);
+    // Admob admob = Admob(context: context);
+    // BannerAd banner = admob.getBanner(context);
 
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         leading: GestureDetector(
           onTap: () async {
-            // LinkedHashMap<DateTime,List<Event>> events = await getData(SqliteDayTime());
-            // if (!context.mounted) return;
-            // Navigator.push(context, MaterialPageRoute(builder: (context) => SecondCalendar(
-            //     events:events
-            //     )
-            //   )
-            // );
+            LinkedHashMap<DateTime,List<Event>> events = await getData(SqliteDayTime());
+            if (!context.mounted) return;
+            Navigator.push(context, MaterialPageRoute(builder: (context) => SecondCalendar(
+                events:events
+                )
+              )
+            );
           },
           child: const Icon(
             Icons.calendar_month_rounded,
@@ -341,14 +343,14 @@ class _MyMainPageBodyState extends State<MyMainPageBody> {
                   height: 0.0,),
               ),
               ),
-              Container(
-                alignment: Alignment.center,
-                width: banner.size.width.toDouble(),
-                height: banner.size.height.toDouble(),
-                child: AdWidget(
-                  ad: banner,
-                ),
-              ),
+              // Container(
+              //   alignment: Alignment.center,
+              //   width: banner.size.width.toDouble(),
+              //   height: banner.size.height.toDouble(),
+              //   child: AdWidget(
+              //     ad: banner,
+              //   ),
+              // ),
             ],
           )
       ),
@@ -464,14 +466,42 @@ class _MyMainPageBodyState extends State<MyMainPageBody> {
             child: FloatingActionButton(
                 heroTag: "btn2",
                 onPressed: (){
-                  timer.firstOrNot();
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      backgroundColor:Colors.white,
+                      title: const Text('타이머 알림 시간 변경'),
+                      content: const Text('경산은 10분 초산은 5분입니다.'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, 'Cancel');
+                          },
+                          style: TextButton.styleFrom(
+                              foregroundColor: color4
+                          ),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            timer.firstOrNot();
+                            Navigator.pop(context, 'OK');
+                          },
+                          style: TextButton.styleFrom(
+                              foregroundColor: color4
+                          ),
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    ),
+                  );
                 },
-                backgroundColor: timer.isFirst? color1 : color1,
+                backgroundColor: color1,
                 foregroundColor: color4,
                 focusColor: Colors.green,
                 mini: true,
                 tooltip: '초산 경산 여부',
-                child: Text(timer.isFirst? '10분':'5분')
+                child: Text(timer.isFirst? '경산':'초산')
             ),
           )
         ],

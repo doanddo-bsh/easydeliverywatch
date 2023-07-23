@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-// import '../db/sqliteDayTime.dart';
+import '../module/sqliteDayTime.dart';
 import 'dart:convert';
 import 'package:intl/intl.dart';
 
-// final _model = SqliteDayTime();
+final _model = SqliteDayTime();
 
 class TimerModule with ChangeNotifier{
 
@@ -61,12 +61,12 @@ class TimerModule with ChangeNotifier{
   void resetTimer() async {
     // save log to db
     if (_theDayTime != ''){
-      // String step3Sv = listToString(lapTime);
-      // await _model.timeInsert(DaytimeModel(
-      //   Thedaytime: _theDayTime,
-      //   Timelist: step3Sv,
-      //   CheckYn: _check_5min_yn,
-      // ));
+      String step3Sv = listToString(lapTime);
+      await _model.timeInsert(DaytimeModel(
+        Thedaytime: _theDayTime,
+        Timelist: step3Sv,
+        CheckYn: _check5MinYn,
+      ));
     }
 
     _theDayTime = '';

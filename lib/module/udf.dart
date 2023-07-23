@@ -1,41 +1,42 @@
-// import 'dart:collection';
-// import 'package:table_calendar/table_calendar.dart';
+import 'dart:collection';
+import 'package:table_calendar/table_calendar.dart';
 import 'package:collection/collection.dart';
+import '../module/sqliteDayTime.dart';
 
 // getData
-// Future<LinkedHashMap<DateTime,List<Event>>> getData(model) async {
-//   final events = LinkedHashMap<DateTime,List<Event>>(
-//     equals: isSameDay,
-//   );
-//   // events 에 db 값 입력
-//   var model_select_all = await model.timeSelect();
-//   for (var item in model_select_all) {
-//     // print('${item.No} - ${item.Thedaytime} / ${item.Timelist}');
-//
-//     int y_int = int.parse(item.Thedaytime.substring(0, 4));
-//     int m_int = int.parse(item.Thedaytime.substring(5, 7));
-//     int d_int = int.parse(item.Thedaytime.substring(8, 10));
-//
-//     DateTime temp_key = DateTime.utc(y_int, m_int, d_int);
-//
-//     if (events.containsKey(temp_key)) {
-//       events[temp_key]!.add(Event(
-//           iteration: item.No,
-//           startDateTime: item.Thedaytime,
-//           sec_all:item.Timelist,
-//           checkYn: item.CheckYn
-//       ));
-//     } else {
-//       events[temp_key] = [Event(
-//         iteration: item.No,
-//         startDateTime: item.Thedaytime,
-//         sec_all:item.Timelist,
-//         checkYn: item.CheckYn,
-//       )];
-//     }
-//   }
-//   return events;
-// }
+Future<LinkedHashMap<DateTime,List<Event>>> getData(model) async {
+  final events = LinkedHashMap<DateTime,List<Event>>(
+    equals: isSameDay,
+  );
+  // events 에 db 값 입력
+  var model_select_all = await model.timeSelect();
+  for (var item in model_select_all) {
+    // print('${item.No} - ${item.Thedaytime} / ${item.Timelist}');
+
+    int y_int = int.parse(item.Thedaytime.substring(0, 4));
+    int m_int = int.parse(item.Thedaytime.substring(5, 7));
+    int d_int = int.parse(item.Thedaytime.substring(8, 10));
+
+    DateTime temp_key = DateTime.utc(y_int, m_int, d_int);
+
+    if (events.containsKey(temp_key)) {
+      events[temp_key]!.add(Event(
+          iteration: item.No,
+          startDateTime: item.Thedaytime,
+          sec_all:item.Timelist,
+          checkYn: item.CheckYn
+      ));
+    } else {
+      events[temp_key] = [Event(
+        iteration: item.No,
+        startDateTime: item.Thedaytime,
+        sec_all:item.Timelist,
+        checkYn: item.CheckYn,
+      )];
+    }
+  }
+  return events;
+}
 
 
 // 초를 시분초로 변경하는 함수
