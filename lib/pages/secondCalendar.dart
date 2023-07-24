@@ -35,11 +35,24 @@ class _SecondCalendarState extends State<SecondCalendar> {
           .month, _focusedDay.day)] ?? []
   );
 
+  BannerAd? _banner;
 
   @override
   void initState(){
     super.initState();
     _selectedDay = _focusedDay;
+
+    _createBannerAd();
+
+  }
+
+  void _createBannerAd(){
+    _banner = BannerAd(
+      size: AdSize.banner
+      , adUnitId: AdMobService.bannerAdUnitId!
+      , listener: AdMobService.bannerAdListener,
+      request: const AdRequest(),
+    )..load();
   }
 
   @override
@@ -319,14 +332,14 @@ class _SecondCalendarState extends State<SecondCalendar> {
                     },
                   ),
                 ),
-                // Container(
-                //   alignment: Alignment.center,
-                //   width: banner.size.width.toDouble(),
-                //   height: banner.size.height.toDouble(),
-                //   child: AdWidget(
-                //     ad: banner,
-                //   ),
-                // ),
+                Container(
+                  alignment: Alignment.center,
+                  width: _banner!.size.width.toDouble(),
+                  height: _banner!.size.height.toDouble(),
+                  child: AdWidget(
+                    ad: _banner!,
+                  ),
+                ),
               ],
             )
         )

@@ -7,7 +7,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import '../module/admob_class.dart';
 import '../module/color_def.dart';
 
-void main() async {
+Future<void> main() async {
   await initializeDateFormatting(); // 달력 한국어 활용 목적
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(

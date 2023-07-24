@@ -47,8 +47,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody> {
     _banner = BannerAd(
         size: AdSize.banner
         , adUnitId: AdMobService.bannerAdUnitId!
-        , listener: AdMobService.bannerAdListener,
-        request: const AdRequest(),
+        , listener: AdMobService.bannerAdListener
+        , request: const AdRequest(),
     )..load();
   }
 
@@ -364,54 +364,38 @@ class _MyMainPageBodyState extends State<MyMainPageBody> {
                           height: 0.0,),
                         ),
                       ),
-                      // _banner == null ? Container()
-                      //     :
-                      // Container(
-                      //   alignment: Alignment.center,
-                      //   width: _banner!.size.width.toDouble(),
-                      //   height: _banner!.size.height.toDouble(),
-                      //   child: AdWidget(
-                      //     ad: _banner!,
-                      //   ),
-                      // ),
                     ],
                   )
               ),
-              // const Positioned.fill(
-              //   bottom: 25,
-              //   child: Align(
-              //     alignment: Alignment.bottomCenter,
-              //     child: AdmobBannerCustom(),
-              //   )
-              // ),
-              // Positioned.fill(
-              //     bottom: 25,
-              //     child: Align(
-              //       alignment: Alignment.bottomCenter,
-              //       child:
-              //         Container(
-              //           alignment: Alignment.center,
-              //           width: this._banner!.size.width.toDouble(),
-              //           height: this._banner!.size.height.toDouble(),
-              //           child: AdWidget(
-              //             ad: this._banner!,
-              //           ),
-              //         ),
-              //     ),
-              // ),
+              Positioned.fill(
+                  bottom: 25,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child:
+                      Container(
+                        alignment: Alignment.center,
+                        width: _banner!.size.width.toDouble(),
+                        height: _banner!.size.height.toDouble(),
+                        child: AdWidget(
+                          ad: _banner!,
+                        ),
+                      ),
+                  ),
+              ),
             ]
           ),
       ),
-      bottomNavigationBar: _banner == null ?
-                          Container() :
-                          Container(
-                              alignment: Alignment.center,
-                              width: _banner!.size.width.toDouble(),
-                              height: _banner!.size.height.toDouble(),
-                              child: AdWidget(
-                                ad: _banner!,
-                              ),
-                          ),
+      // bottomNavigationBar: _banner == null ?
+      //                     Container() :
+      //                     Container(
+      //                         padding: EdgeInsets.only(bottom: 10.0),
+      //                         alignment: Alignment.center,
+      //                         width: _banner!.size.width.toDouble(),
+      //                         height: _banner!.size.height.toDouble(),
+      //                         child: AdWidget(
+      //                           ad: _banner!,
+      //                         ),
+      //                     ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Stack(
         children: [
