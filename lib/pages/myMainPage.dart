@@ -423,6 +423,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody> {
                   if (timer.hurt){
                     timer.gonehurt();
                   }else{
+                    // service.startService();
                     timer.starthurt();
                     // 최근 3회 평균 진통 주기가 5분 미만 일 경우 알람
                     if ((timer.lapTime.length >=3)

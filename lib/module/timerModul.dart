@@ -33,7 +33,9 @@ class TimerModule with ChangeNotifier{
   int get minWarning => _minWarning;
 
   // 진통 시작
-  void starthurt(){
+  void starthurt(
+      // int secFromStream
+      ) async {
     if (_cnt != 0){
       _lapTime.insert(
           0,
