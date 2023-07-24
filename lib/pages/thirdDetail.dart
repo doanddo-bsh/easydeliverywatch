@@ -3,6 +3,7 @@ import '../module/udf.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../module/color_def.dart';
+import '../module/admob_class.dart';
 
 class ThirdDetail extends StatelessWidget {
 

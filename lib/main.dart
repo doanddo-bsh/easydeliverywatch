@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../pages/myMainPage.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import '../module/admob_class.dart';
+import '../module/color_def.dart';
 
 void main() async {
   await initializeDateFormatting(); // 달력 한국어 활용 목적
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
           title: 'easy Delivery Watch',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
+            colorScheme: ColorScheme.fromSeed(seedColor: color1),
             useMaterial3: true,
           ),
           builder: (context, child){
@@ -67,5 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
 
     return MyMainPage();
+
   }
 }

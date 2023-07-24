@@ -10,7 +10,7 @@ import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../module/color_def.dart';
 import 'thirdDetail.dart';
-
+import '../module/admob_class.dart';
 
 class SecondCalendar extends StatefulWidget {
 
