@@ -49,17 +49,17 @@ String secToText(int sec){
   int send = sec % 60;
 
   if ((send < 10)&(hour == 0)){
-    secTextFormat = '${mint}:0${send}';
+    secTextFormat = '$mint:0$send';
   } else if ((send >= 10)&(hour == 0)){
-    secTextFormat = '${mint}:${send}';
+    secTextFormat = '$mint:$send';
   } else if ((send < 10)&(mint < 10)&(hour != 0)){
-    secTextFormat = '${hour}:0${mint}:0${send}';
+    secTextFormat = '$hour:0$mint:0$send';
   } else if ((send >= 10)&(mint < 10)&(hour != 0)){
-    secTextFormat = '${hour}:0${mint}:${send}';
+    secTextFormat = '$hour:0$mint:$send';
   } else if ((send < 10)&(mint >= 10)&(hour != 0)){
-    secTextFormat = '${hour}:${mint}:0${send}';
+    secTextFormat = '$hour:$mint:0$send';
   } else {
-    secTextFormat = '${hour}:${mint}:$send';
+    secTextFormat = '$hour:$mint:$send';
   }
 
   return secTextFormat;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../module/udf.dart';
-import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../module/color_def.dart';
 import '../module/admob_class.dart';
@@ -221,7 +220,8 @@ class _ThirdDetailState extends State<ThirdDetail> {
                               width: 130,
                               alignment : Alignment.center,
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
+                                padding: const EdgeInsets.fromLTRB(30.0, 0.0,
+                                    0.0, 0.0),
                                 child: Text(
                                   secToText(widget.hurtRecodeAll[index][0]),
                                   style: const TextStyle(
@@ -250,7 +250,7 @@ class _ThirdDetailState extends State<ThirdDetail> {
                               width: 130,
                               alignment : Alignment.center,
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+                                padding: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
                                 child: Text(
                                   secToText(widget.hurtRecodeAll[index][1]),
                                   style: const TextStyle(

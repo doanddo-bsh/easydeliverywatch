@@ -19,7 +19,7 @@ class TimerModule with ChangeNotifier{
   int _check5MinYn = 0 ;
   bool _isFirst = false;
   int _minWarning = 5;
-
+  DateTime _startTime = DateTime.now();
 
   String get theDayTime => _theDayTime;
   bool get isRunning => _isRunning;
@@ -31,6 +31,13 @@ class TimerModule with ChangeNotifier{
   int get check5MinYn => _check5MinYn ;
   bool get isFirst => _isFirst;
   int get minWarning => _minWarning;
+  DateTime get startTime => _startTime;
+
+  set secondsSet(int secondsinput) {
+    int secsTemp = _secs ;
+    _secs = secsTemp + secondsinput;
+    notifyListeners();
+  }
 
   // 진통 시작
   void starthurt(
@@ -45,13 +52,24 @@ class TimerModule with ChangeNotifier{
     _secs = 0;
     _isRunning = true;
     _hurt = true;
+
+    _startTime = DateTime.now();
+
     if (_cnt == 0){
       _theDayTime = DateFormat('yyyy-MM-dd HH:mm').format(DateTime.now());
       _timer = Timer.periodic(const Duration(seconds:1), (Timer t) {
-        _secs ++;
+        // _secs ++;
+        DateTime _targetTime = DateTime.now();
+        final datetimediff = _targetTime.difference(_startTime);
+        _secs = datetimediff.inSeconds;
+        // print(_secs);
+        // print(_startTime);
+        // print(_targetTime);
         notifyListeners();
       });
-    };
+    }
+
+
     _cnt ++;
   }
 

@@ -19,7 +19,7 @@ class MyMainPage extends StatelessWidget {
 
     return ChangeNotifierProvider<TimerModule>(  // provider 활용을 위해 설정함
         create: (BuildContext context) => TimerModule(),
-        child: MyMainPageBody()
+        child: const MyMainPageBody()
     );
   }
 }
@@ -31,16 +31,73 @@ class MyMainPageBody extends StatefulWidget {
   State<MyMainPageBody> createState() => _MyMainPageBodyState();
 }
 
-class _MyMainPageBodyState extends State<MyMainPageBody> {
+class _MyMainPageBodyState extends State<MyMainPageBody>
+    with WidgetsBindingObserver
+{
 
   BannerAd? _banner;
+  DateTime datetimePause = DateTime.now();
+  DateTime datetimeResume = DateTime.now();
+  int timeDiff = 0;
+  bool pauseYn = false;
+  int secondsAtPause = 0 ;
 
   @override
   void initState(){
     super.initState();
 
     _createBannerAd();
+    WidgetsBinding.instance.addObserver(this);
+  }
 
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    TimerModule timer = Provider.of<TimerModule>(context, listen: false);
+
+    super.didChangeAppLifecycleState(state);
+    switch(state){
+      case AppLifecycleState.resumed:
+
+        // print('resumed');
+        // datetimeResume = DateTime.now();
+        // print('datetimeResume $datetimeResume');
+        // final datetimediff = datetimeResume!.difference(datetimePause!);
+        // print(datetimediff!.inSeconds);
+        // timeDiff = datetimediff!.inSeconds - (timer.seconds - secondsAtPause);
+        // print('timeDiff $timeDiff');
+        // if (pauseYn == true) {
+        //   pauseYn = false;
+        //   timer.secondsSet = timeDiff;
+        // }
+        break;
+
+      case AppLifecycleState.inactive:
+        // print('inactive');
+        break;
+      case AppLifecycleState.hidden:  // <-- This is the new state.
+        // print('hidden');
+        break;
+      case AppLifecycleState.detached:
+        // print('detached');
+        // 강제 종료 시점
+        if (timer.lapTime.length > 0){
+          timer.resetTimer();
+        }
+        break;
+      case AppLifecycleState.paused:
+        // print('paused');
+        // secondsAtPause = timer.seconds ;
+        // datetimePause = DateTime.now();
+        // print('datetimePause $datetimePause');
+        // pauseYn = true;
+        break;
+    }
   }
 
   void _createBannerAd(){
@@ -290,7 +347,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody> {
                                           fontSize: 12.0,
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 90.0,
                                       )
                                     ],
@@ -313,10 +370,10 @@ class _MyMainPageBodyState extends State<MyMainPageBody> {
                                     width: 130,
                                     alignment: Alignment.center,
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(60.0, 0.0, 0.0, 0.0),
+                                      padding: const EdgeInsets.fromLTRB(60.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         secToText(lapTime[index][0]),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 19,
                                             color: color4
                                         ),
@@ -329,7 +386,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody> {
                                     alignment: Alignment.center,
                                     child: Text(
                                       secToText(lapTime[index][2]),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 26
                                         ,color: color5,
                                       ),
@@ -341,10 +398,10 @@ class _MyMainPageBodyState extends State<MyMainPageBody> {
                                     width: 130,
                                     alignment: Alignment.center,
                                     child: Padding(
-                                      padding: EdgeInsets.fromLTRB(0.0, 0.0, 60.0, 0.0),
+                                      padding: const EdgeInsets.fromLTRB(0.0, 0.0, 60.0, 0.0),
                                       child: Text(
                                         secToText(lapTime[index][1]),
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 19,
                                             color: color4
                                         ),
@@ -456,14 +513,14 @@ class _MyMainPageBodyState extends State<MyMainPageBody> {
                                       mainAxisAlignment:
                                       MainAxisAlignment.center,
                                       children: [
-                                        Padding(padding: EdgeInsets
+                                        Padding(padding: const EdgeInsets
                                             .fromLTRB(0.0, 2.5,
                                             0.0, 0.0),
                                           child: Text(timer.isFirst?
                                           '평균 주기가 10분 미만이니'
                                               :'평균 주기가 5분 미만이니'
                                             ,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 13.0
                                             ),
                                           ),

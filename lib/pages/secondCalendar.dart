@@ -3,10 +3,8 @@ import 'package:table_calendar/table_calendar.dart';
 import 'dart:collection';
 import '../module/sqliteDayTime.dart';
 import 'dart:convert';
-// import 'thirdDetail.dart';
 import 'package:intl/intl.dart';
 import '../module/udf.dart';
-import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../module/color_def.dart';
 import 'thirdDetail.dart';
@@ -185,6 +183,47 @@ class _SecondCalendarState extends State<SecondCalendar> {
                                 hurtRecodeAll:StringToLLI(value[idx].sec_all),
                               )));
                             },
+                            onLongPress: (){
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('진통 기록 삭제'),
+                                  content: const Text('해당 진통 기록을 '
+                                      '삭제하시겠습니까?'),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context, 'Cancel');
+                                      },
+                                      style: TextButton.styleFrom(
+                                          foregroundColor: color4
+                                      ),
+                                      child: const Text('Cancel'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        // print(value[idx].iteration);
+                                        _model.timeDelete(
+                                            value[idx].iteration
+                                        );
+                                        setState(() {
+                                          widget.events[DateTime.utc(_focusedDay.year, _focusedDay
+                                              .month, _focusedDay.day)]?.removeWhere(
+                                                  (item) => item.iteration == value[idx].iteration
+                                          )
+                                          ;
+                                        });
+                                        Navigator.pop(context, 'OK');
+                                      },
+                                      style: TextButton.styleFrom(
+                                          foregroundColor: color4
+                                      ),
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
                             child: Container(
                               alignment: Alignment.centerLeft,
                               margin: const EdgeInsets.symmetric(
@@ -314,9 +353,6 @@ class _SecondCalendarState extends State<SecondCalendar> {
                                                   ],
                                                 ),
                                               );
-
-
-
                                             },
                                           ),
                                         ]
