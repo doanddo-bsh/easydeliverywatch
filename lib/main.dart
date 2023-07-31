@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../pages/myMainPage.dart';
+import '../pages/splashPage.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '../module/color_def.dart';
 
@@ -50,24 +50,18 @@ class MyApp extends StatelessWidget {
           },
           home: child,
         ),
-      child: const MyHomePage(),
+      child: SplashScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-
-    return const MyMainPage();
-
-  }
-}
+// class MyHomePage extends StatelessWidget {
+//   const MyHomePage({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//
+//     return const MyMainPage();
+//
+//   }
+// }

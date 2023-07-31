@@ -117,6 +117,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
 
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation:0.0,
         elevation: 0,
         leading: GestureDetector(
           onTap: () async {
@@ -139,36 +140,66 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
               ,color: Colors.black,
             )
             ,onPressed: () {
-            // show dialog
-            showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                title: const Text('진통 기록 초기화'),
-                content: const Text('진통 기록을 모두 삭제하시겠습니까?'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context, 'Cancel');
-                    },
-                    style: TextButton.styleFrom(
-                        foregroundColor: color4
-                    ),
-                    child: const Text('Cancel'),
+              // show dialog no log
+            if (timer.lapTime.length == 0){
+              showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  surfaceTintColor:Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      timer.resetTimer();
-                      timer.check_y(0);
-                      Navigator.pop(context, 'OK');
-                    },
-                    style: TextButton.styleFrom(
-                        foregroundColor: color4
+                  title: const Text('진통 기록이 없습니다.'),
+                  // content: const Text('진통 기록 생성 후 초기ㅎ'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context, 'OK');
+                      },
+                      style: TextButton.styleFrom(
+                          foregroundColor: color4
+                      ),
+                      child: const Text('OK'),
                     ),
-                    child: const Text('OK'),
+                  ],
+                ),
+              );
+            } else {
+              // show dialog refresh
+              showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  surfaceTintColor:Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                ],
-              ),
-            );
+                  title: const Text('진통 기록 초기화'),
+                  content: const Text('진통 기록을 모두 삭제하시겠습니까?'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context, 'Cancel');
+                      },
+                      style: TextButton.styleFrom(
+                          foregroundColor: color4
+                      ),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        timer.resetTimer();
+                        timer.check_y(0);
+                        Navigator.pop(context, 'OK');
+                      },
+                      style: TextButton.styleFrom(
+                          foregroundColor: color4
+                      ),
+                      child: const Text('OK'),
+                    ),
+                  ],
+                ),
+              );
+            }
             // timer.resetTimer();
           },
           )
@@ -292,11 +323,25 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                                           "\n진통이 멈추면 [진통 멈춤] 버튼을 눌러주세요"
                                         ,textAlign: TextAlign.center
                                         ,style: TextStyle(
-                                          color: Colors.black,
+                                          color: Colors.black87,
                                           fontSize: 12.0,
                                         ),
                                       ),
-                                      const SizedBox(height: 30.0,),
+                                      const SizedBox(height: 10.0,),
+                                      const Text("초산모는 5분 미만의 진통주기가 되면 알려주는 "
+                                          "[초산]버튼을,"
+                                          "\n경산모는 10분 미만의 진통주기가 되면 알려주는 "
+                                          "[경산]버튼을"
+                                          " \n누른"
+                                          " 후 "
+                                          "사용하세요"
+                                        ,textAlign: TextAlign.center
+                                        ,style: TextStyle(
+                                          color: Colors.black87,
+                                          fontSize: 12.0,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 50.0,),
                                       Text("‘진진통’은 ’진통간격이 점차 짧아져 평균 주기가"
                                           "5분간격으로\n좁혀지고 일정한 규칙성을 보입니다."
                                         ,textAlign: TextAlign.center
@@ -325,16 +370,17 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                                           fontSize: 12.0,
                                         ),
                                       ),
-                                      const SizedBox(height: 30.0,),
-                                      const Text("이 앱은 의료 기기가 아닙니다. 수축의 빈도와 간격은"
-                                          "\n표준 지표를 기반으로 한 것이며 "
-                                          "절대적인 "
-                                          "기준이 아니니\n자세한 내용은 "
+                                      const SizedBox(height: 50.0,),
+                                       const Text("이 앱은 의료 기기가 아닙니다." "\n수축의 "
+                                           "빈도와 간격은"
+                                          "표준 지표를 기반으로 한 것이며 "
+                                          "\n절대적인 "
+                                          "기준이 아니니 자세한 내용은 "
                                           "의사와 상담할 것을 권합니다."
                                         ,textAlign: TextAlign.center
                                         ,style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 12.0,
+                                          color: Colors.black87,
+                                          fontSize: 10.0,
                                         ),
                                       ),
                                       // SizedBox(height: 7.0,),
@@ -343,8 +389,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                                           " 권합니다."
                                         ,textAlign: TextAlign.center
                                         ,style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 12.0,
+                                          color: Colors.black87,
+                                          fontSize: 10.0,
                                         ),
                                       ),
                                       const SizedBox(
@@ -497,7 +543,12 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                                 height: 100.0,
                                 width: 100.0,
                                 child:
-                                const Image(image: AssetImage('assets/easydelivery_app_main_icon_re2.png')),
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Image(image: AssetImage
+                                    ('assets/appIcon/easydeliveryAppicon6'
+                                      '.png')),
+                                ),
                               ),
                               description: Container(
                                 height: 80,
@@ -568,37 +619,87 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                 onPressed: (){
                   showDialog<String>(
                     context: context,
-                    builder: (BuildContext context) => AlertDialog(
-                      backgroundColor:Colors.white,
-                      title: const Text('타이머 알림 시간 변경'),
-                      content: const Text('경산은 10분 초산은 5분입니다.'),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context, 'Cancel');
-                          },
-                          style: TextButton.styleFrom(
-                              foregroundColor: color4
+                    builder: (BuildContext context) {
+                      if (timer.isFirst) {
+                        return AlertDialog(
+                          surfaceTintColor:Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Text('Cancel'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            timer.firstOrNot();
-                            Navigator.pop(context, 'OK');
-                          },
-                          style: TextButton.styleFrom(
-                              foregroundColor: color4
+                          title: const Text('초산으로 바꾸시겠습니까?'
+                            ,style: TextStyle(
+                                fontSize: 14.5
+                                ,color: Colors.black
+                            ),
                           ),
-                          child: const Text('OK'),
-                        ),
-                      ],
-                    ),
+                          content: const Text('초산은 5분미만 입니다.'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, 'Cancel');
+                              },
+                              style: TextButton.styleFrom(
+                                  foregroundColor: color4
+                              ),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                timer.firstOrNot();
+                                Navigator.pop(context, 'OK');
+                              },
+                              style: TextButton.styleFrom(
+                                  foregroundColor: color4
+                              ),
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        );
+                      } else {
+                        return AlertDialog(
+                          // backgroundColor:Colors.white,
+                          surfaceTintColor:Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          title: const Text('경산으로 바꾸시겠습니까?'
+                            ,style: TextStyle(
+                                fontSize: 14.5
+                                ,color: Colors.black
+                            ),
+                          ),
+                          content: const Text('경산은 10분미만 입니다.'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, 'Cancel');
+                              },
+                              style: TextButton.styleFrom(
+                                  foregroundColor: color4
+                              ),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                timer.firstOrNot();
+                                Navigator.pop(context, 'OK');
+                              },
+                              style: TextButton.styleFrom(
+                                  foregroundColor: color4
+                              ),
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        );
+                      }
+
+
+
+                    }
                   );
                 },
                 backgroundColor: color1,
                 foregroundColor: color4,
-                focusColor: Colors.green,
                 mini: true,
                 tooltip: '초산 경산 여부',
                 child: Text(timer.isFirst? '경산':'초산')

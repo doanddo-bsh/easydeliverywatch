@@ -119,6 +119,7 @@ class _SecondCalendarState extends State<SecondCalendar> {
 
     return Scaffold(
         appBar: AppBar(
+          scrolledUnderElevation:0.0,
           title: const Text('진통 기록'),
           leading: GestureDetector(
             onTap: () {
@@ -187,6 +188,10 @@ class _SecondCalendarState extends State<SecondCalendar> {
                               showDialog<String>(
                                 context: context,
                                 builder: (BuildContext context) => AlertDialog(
+                                  surfaceTintColor:Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
                                   title: const Text('진통 기록 삭제'),
                                   content: const Text('해당 진통 기록을 '
                                       '삭제하시겠습니까?'),
@@ -317,6 +322,10 @@ class _SecondCalendarState extends State<SecondCalendar> {
                                               showDialog<String>(
                                                 context: context,
                                                 builder: (BuildContext context) => AlertDialog(
+                                                  surfaceTintColor:Colors.white,
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(10),
+                                                  ),
                                                   title: const Text('진통 기록 삭제'),
                                                   content: const Text('해당 진통 기록을 '
                                                       '삭제하시겠습니까?'),

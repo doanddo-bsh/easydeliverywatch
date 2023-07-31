@@ -54,6 +54,7 @@ class _ThirdDetailState extends State<ThirdDetail> {
     return Scaffold(
         appBar: AppBar(
           // title: Text('진통 기록'),
+          scrolledUnderElevation:0.0,
           elevation: 0,
           backgroundColor : color1,
           foregroundColor : Theme.of(context).colorScheme.onBackground,
