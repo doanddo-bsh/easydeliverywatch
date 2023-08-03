@@ -100,6 +100,28 @@ class TimerModule with ChangeNotifier{
     _hurt = false;
   }
 
+  void resetTimerVoid() async {
+    // save log to db
+    // if (_theDayTime != ''){
+    //   String step3Sv = listToString(lapTime);
+    //   await _model.timeInsert(DaytimeModel(
+    //     Thedaytime: _theDayTime,
+    //     Timelist: step3Sv,
+    //     CheckYn: _check5MinYn,
+    //   ));
+    // }
+
+    _theDayTime = '';
+    _timer?.cancel();
+    _secs = 0;
+    _isRunning = false;
+    _lapTime.clear();
+    notifyListeners();
+
+    _cnt = 0;
+    _hurt = false;
+  }
+
   void check_y(int n_0_1){
     _check5MinYn = n_0_1;
   }

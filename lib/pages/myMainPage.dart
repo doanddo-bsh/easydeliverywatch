@@ -10,6 +10,8 @@ import '../module/timerModul.dart';
 import '../module/customAlertDialog.dart';
 import '../module/sqliteDayTime.dart';
 import 'secondCalendar.dart';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 
 class MyMainPage extends StatelessWidget {
   const MyMainPage({Key? key}) : super(key: key);
@@ -47,6 +49,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
     super.initState();
 
     _createBannerAd();
+    loadAd();
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -63,20 +66,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
     super.didChangeAppLifecycleState(state);
     switch(state){
       case AppLifecycleState.resumed:
-
         // print('resumed');
-        // datetimeResume = DateTime.now();
-        // print('datetimeResume $datetimeResume');
-        // final datetimediff = datetimeResume!.difference(datetimePause!);
-        // print(datetimediff!.inSeconds);
-        // timeDiff = datetimediff!.inSeconds - (timer.seconds - secondsAtPause);
-        // print('timeDiff $timeDiff');
-        // if (pauseYn == true) {
-        //   pauseYn = false;
-        //   timer.secondsSet = timeDiff;
-        // }
         break;
-
       case AppLifecycleState.inactive:
         // print('inactive');
         break;
@@ -85,17 +76,11 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
         break;
       case AppLifecycleState.detached:
         // print('detached');
-        // 강제 종료 시점
         if (timer.lapTime.length > 0){
           timer.resetTimer();
         }
         break;
       case AppLifecycleState.paused:
-        // print('paused');
-        // secondsAtPause = timer.seconds ;
-        // datetimePause = DateTime.now();
-        // print('datetimePause $datetimePause');
-        // pauseYn = true;
         break;
     }
   }
@@ -107,6 +92,64 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
         , listener: AdMobService.bannerAdListener
         , request: const AdRequest(),
     )..load();
+  }
+
+  static String? get fullScreenAdid{
+    if (kReleaseMode){
+      if (Platform.isAndroid) {
+        return 'ca-app-pub-7191096510845066/2310219248';
+      } else if (Platform.isIOS){
+        return 'ca-app-pub-7191096510845066/9263420651';
+      }
+    } else {
+      if (Platform.isAndroid) {
+        return 'ca-app-pub-3940256099942544/1033173712';
+      } else if (Platform.isIOS){
+        return 'ca-app-pub-3940256099942544/4411468910';
+      }
+    }
+  }
+
+  InterstitialAd? _interstitialAd;
+
+  /// Loads an interstitial ad.
+  void loadAd() {
+    InterstitialAd.load(
+        adUnitId: fullScreenAdid!,
+        request: const AdRequest(),
+        adLoadCallback: InterstitialAdLoadCallback(
+          // Called when an ad is successfully received.
+          onAdLoaded: (ad) {
+            ad.fullScreenContentCallback = FullScreenContentCallback(
+              // Called when the ad showed the full screen content.
+                onAdShowedFullScreenContent: (ad) {print('ad showed the full screen');},
+                // Called when an impression occurs on the ad.
+                onAdImpression: (ad) {print('impression occurs');},
+                // Called when the ad failed to show full screen content.
+                onAdFailedToShowFullScreenContent: (ad, err) {
+                  // Dispose the ad here to free resources.
+                  print('Dispose the ad here to free resources.');
+                  ad.dispose();
+                },
+                // Called when the ad dismissed full screen content.
+                onAdDismissedFullScreenContent: (ad) {
+                  // Dispose the ad here to free resources.
+                  ad.dispose();
+                },
+                // Called when a click is recorded for an ad.
+                onAdClicked: (ad) {
+                  print('Called when a click is recorded for an ad.');
+                });
+
+            debugPrint('$ad loaded.');
+            // Keep a reference to the ad so you can show it later.
+            _interstitialAd = ad;
+          },
+          // Called when an ad request failed.
+          onAdFailedToLoad: (LoadAdError error) {
+            debugPrint('InterstitialAd failed to load: $error');
+          },
+        ));
   }
 
   @override
@@ -135,6 +178,47 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
           ),
         ),
         actions: [
+          IconButton(onPressed: (){
+            showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => AlertDialog(
+                surfaceTintColor:Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                title: const Text('전면 광고를 보시겠습니까?',
+                  style: TextStyle(fontSize: 17,
+                     ),),
+                content: const Text('개발자를 위해 5초만 기부해주세요',
+                  style: TextStyle
+                  (fontSize: 13.5,
+                    color: Color(0xFF7C7A7A)),),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context, 'Cancel');
+                    },
+                    style: TextButton.styleFrom(
+                        foregroundColor: color4
+                    ),
+                    child: const Text('Cancel'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      _interstitialAd!.show();
+                      Navigator.pop(context, 'OK');
+                    },
+                    style: TextButton.styleFrom(
+                        foregroundColor: color4
+                    ),
+                    child: const Text('OK'),
+                  ),
+                ],
+              ),
+            );
+          },
+          icon: Icon(Icons.coffee_rounded),
+          ),
           IconButton(
             icon:const Icon(Icons.refresh
               ,color: Colors.black,
@@ -149,11 +233,26 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  title: const Text('진통 기록이 없습니다.'),
-                  // content: const Text('진통 기록 생성 후 초기ㅎ'),
+                  title: const Text('진통 기록 초기화',
+                    style: TextStyle(fontSize: 17,
+                       ),),
+                  content: const Text('진통 기록을 모두 삭제하시겠습니까?',
+                      style:TextStyle(fontSize: 13.5
+                      ,color: Color(0xFF7C7A7A))),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
+                        Navigator.pop(context, 'Cancel');
+                      },
+                      style: TextButton.styleFrom(
+                          foregroundColor: color4
+                      ),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        timer.resetTimerVoid();
+                        timer.check_y(0);
                         Navigator.pop(context, 'OK');
                       },
                       style: TextButton.styleFrom(
@@ -173,8 +272,11 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  title: const Text('진통 기록 초기화'),
-                  content: const Text('진통 기록을 모두 삭제하시겠습니까?'),
+                  title: const Text('진통 기록 초기화',
+                    style: TextStyle(fontSize: 17),),
+                  content: const Text('진통 기록을 모두 삭제하시겠습니까?',
+                      style:TextStyle(fontSize: 13.5
+                      ,color: Color(0xFF7C7A7A))),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
@@ -318,7 +420,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                                       18.0, 30.0, 10.0),
                                   child: Column(
                                     children: [
-                                      const SizedBox(height: 12.0,),
+                                      const SizedBox(height: 20.0,),
                                       const Text("진통이 시작되면 [진통 시작] 버튼"
                                           "\n진통이 멈추면 [진통 멈춤] 버튼을 눌러주세요"
                                         ,textAlign: TextAlign.center
@@ -394,7 +496,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                                         ),
                                       ),
                                       const SizedBox(
-                                        height: 90.0,
+                                        height: 130.0,
                                       )
                                     ],
                                   ),
@@ -512,7 +614,9 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
               child: FloatingActionButton.extended(
                 heroTag: "btn1",
                 label:Text(timer.hurt ? '진통 멈춤' : '진통 시작'
-                  ,style: const TextStyle(fontSize: 25),),
+                  ,style: const TextStyle(fontSize: 23,color: color5),
+                ),
+                elevation: 0,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
                       Radius.circular(50)
@@ -556,7 +660,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                                   children: [
                                     const Text('엄마 저를 만나러 오세요!',
                                       style: TextStyle(
-                                        fontSize: 17.0,
+                                        fontSize: 17.5,
+                                        height: 0.7
                                       ),
                                     ),
                                     const SizedBox(height: 3.0,),
@@ -565,14 +670,14 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                                       MainAxisAlignment.center,
                                       children: [
                                         Padding(padding: const EdgeInsets
-                                            .fromLTRB(0.0, 2.5,
+                                            .fromLTRB(0.0, 10.0,
                                             0.0, 0.0),
                                           child: Text(timer.isFirst?
                                           '평균 주기가 10분 미만이니'
                                               :'평균 주기가 5분 미만이니'
                                             ,
                                             style: const TextStyle(
-                                                fontSize: 13.0
+                                                fontSize: 12.0
                                             ),
                                           ),
                                         ),
@@ -585,12 +690,12 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                                       children: [
                                         const Text('병원으로 출발하세요',
                                           style: TextStyle(
-                                              fontSize: 13.0
+                                              fontSize: 12.0
                                           ),
                                         ),
                                         Container(
                                             height: 11.0,
-                                            width: 16,
+                                            width: 17,
                                             child: const Image(
                                                 image: AssetImage
                                                   ('assets/icons8-siren-100.png'))
@@ -611,7 +716,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
           ),
           Align(
             alignment: Alignment(
-                Alignment.bottomRight.x - 0.07, Alignment.bottomRight.y -
+                Alignment.bottomRight.x - 0.11, Alignment.bottomRight.y -
                 0.12
             ),
             child: FloatingActionButton(
@@ -628,11 +733,13 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                           ),
                           title: const Text('초산으로 바꾸시겠습니까?'
                             ,style: TextStyle(
-                                fontSize: 14.5
+                                fontSize: 17
                                 ,color: Colors.black
                             ),
                           ),
-                          content: const Text('초산은 5분미만 입니다.'),
+                          content: const Text('초산은 5분 미만입니다',style: TextStyle(
+                            fontSize: 13.5,
+                              color: Color(0xFF7C7A7A))),
                           actions: <Widget>[
                             TextButton(
                               onPressed: () {
@@ -664,11 +771,15 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                           ),
                           title: const Text('경산으로 바꾸시겠습니까?'
                             ,style: TextStyle(
-                                fontSize: 14.5
+                                fontSize: 17
                                 ,color: Colors.black
                             ),
                           ),
-                          content: const Text('경산은 10분미만 입니다.'),
+                          content: const Text('경산은 10분 미만입니다'
+                            ,style: TextStyle(
+                              fontSize: 13.5
+                              ,color: Color(0xFF7C7A7A)
+                          ),),
                           actions: <Widget>[
                             TextButton(
                               onPressed: () {
@@ -692,9 +803,6 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                           ],
                         );
                       }
-
-
-
                     }
                   );
                 },
@@ -702,7 +810,11 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                 foregroundColor: color4,
                 mini: true,
                 tooltip: '초산 경산 여부',
-                child: Text(timer.isFirst? '경산':'초산')
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),),
+                child: Text(timer.isFirst? '경산':'초산',
+                  style: const TextStyle (fontSize: 13),)
             ),
           )
         ],

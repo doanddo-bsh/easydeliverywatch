@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-      Duration(seconds: 2),
+      Duration(microseconds: 1500),
           () => Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MyMainPage()),
@@ -31,36 +31,38 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         //height : MediaQuery.of(context).size.height,
         //color: kPrimaryColor,
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 270),
-            Container(
-              height: 100.0,
-              width: 100.0,
-              child: Image(image: AssetImage
-                ('assets/appIcon/easydeliveryAppicon7_space'
-                  '.png')
-              ),
-            ),
+            // Container(
+            //   height: 100.0,
+            //   width: 100.0,
+            //   child: const Image(image: AssetImage
+            //     ('assets/appIcon/easydeliveryAppicon7_space'
+            //       '.png')
+            //   ),
+            // ),
             SizedBox(height: 20.0,),
             Text('진통워치',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 30.0,
-                    letterSpacing: 4.0,
+                    fontSize: 33.0,
+                    letterSpacing: 13.0,
                     color: color4
                 )
             ),
+            SizedBox(height: 30),
             SpinKitPumpingHeart(
               color: color2,
+              size: 60,
             ),
             Expanded(child: SizedBox()),
             Align(
               child: Text("© Copyright 2023, 진통워치(Hwatch)",
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.0,
+                   // fontWeight: FontWeight.bold,
+                    fontSize: 12.0,
                     color: color4
                   )
               ),

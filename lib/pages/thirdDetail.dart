@@ -88,7 +88,7 @@ class _ThirdDetailState extends State<ThirdDetail> {
                             widget.theDate.substring(0,10).replaceAll('-', '. '),
                             style: const TextStyle(
                                 fontSize: 19.5
-                                ,height: 2.0
+                                ,height: 2.5
                                 ,color: color4
                             ),
                           ),

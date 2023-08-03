@@ -326,9 +326,13 @@ class _SecondCalendarState extends State<SecondCalendar> {
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius: BorderRadius.circular(10),
                                                   ),
-                                                  title: const Text('진통 기록 삭제'),
+                                                  title: const Text('진통 기록 삭제',
+                                                    style:TextStyle(fontSize: 17,
+                                                        height: 1.5)),
                                                   content: const Text('해당 진통 기록을 '
-                                                      '삭제하시겠습니까?'),
+                                                      '삭제하시겠습니까?',
+                                                      style:TextStyle(fontSize: 13.5
+                                                      ,color: Color(0xFF7C7A7A))),
                                                   actions: <Widget>[
                                                     TextButton(
                                                       onPressed: () {
