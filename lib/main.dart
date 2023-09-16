@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../pages/splashPage.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '../module/color_def.dart';
+import '../pages/myMainPage.dart';
 
 Future<void> main() async {
   await initializeDateFormatting(); // 달력 한국어 활용 목적
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
     //     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
     //     useMaterial3: true,
     //   ),
-    //   home: const MyHomePage(),
+    //   home: const MyMainPage(),
     // );
 
     // 변경 후
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
           home: child,
         ),
       child: SplashScreen(),
+      // child: MyMainPage(),
     );
   }
 }

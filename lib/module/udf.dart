@@ -44,22 +44,43 @@ String secToText(int sec){
 
   late String secTextFormat ;
 
-  int hour = ((sec ~/ 60) ~/ 60);
-  int mint = (sec ~/ 60);
+  int day = ((sec ~/ 60) ~/ 60) ~/24;
+  int hour = ((sec ~/ 60) ~/ 60) % 24;
+  int mint = (sec ~/ 60) % 60;
   int send = sec % 60;
 
-  if ((send < 10)&(hour == 0)){
-    secTextFormat = '$mint:0$send';
-  } else if ((send >= 10)&(hour == 0)){
-    secTextFormat = '$mint:$send';
-  } else if ((send < 10)&(mint < 10)&(hour != 0)){
-    secTextFormat = '$hour:0$mint:0$send';
-  } else if ((send >= 10)&(mint < 10)&(hour != 0)){
-    secTextFormat = '$hour:0$mint:$send';
-  } else if ((send < 10)&(mint >= 10)&(hour != 0)){
-    secTextFormat = '$hour:$mint:0$send';
+  if (day == 0) {
+    if ((send < 10)&(hour == 0)){
+      secTextFormat = '$mint:0$send';
+    } else if ((send >= 10)&(hour == 0)){
+      secTextFormat = '$mint:$send';
+    } else if ((send < 10)&(mint < 10)&(hour != 0)){
+      secTextFormat = '$hour:0$mint:0$send';
+    } else if ((send >= 10)&(mint < 10)&(hour != 0)){
+      secTextFormat = '$hour:0$mint:$send';
+    } else if ((send < 10)&(mint >= 10)&(hour != 0)){
+      secTextFormat = '$hour:$mint:0$send';
+    } else {
+      secTextFormat = '$hour:$mint:$send';
+    }
   } else {
-    secTextFormat = '$hour:$mint:$send';
+    if ((send < 10)&(hour == 0)&(mint <10)){
+      secTextFormat = '$day일 0:0$mint:0$send';
+    } else if ((send >= 10)&(hour == 0)&(mint <10)){
+      secTextFormat = '$day일 0:0$mint:$send';
+    } else if ((send < 10)&(hour == 0)){
+      secTextFormat = '$day일 0:$mint:0$send';
+    } else if ((send >= 10)&(hour == 0)){
+      secTextFormat = '$day일 0:$mint:$send';
+    } else if ((send < 10)&(mint < 10)&(hour != 0)){
+      secTextFormat = '$day일 $hour:0$mint:0$send';
+    } else if ((send >= 10)&(mint < 10)&(hour != 0)){
+      secTextFormat = '$day일 $hour:0$mint:$send';
+    } else if ((send < 10)&(mint >= 10)&(hour != 0)){
+      secTextFormat = '$day일 $hour:$mint:0$send';
+    } else {
+      secTextFormat = '$day일 $hour:$mint:$send';
+    }
   }
 
   return secTextFormat;

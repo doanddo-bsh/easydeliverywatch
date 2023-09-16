@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import '../module/udf.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -50,6 +51,7 @@ class _ThirdDetailState extends State<ThirdDetail> {
 
     // Admob admob = Admob(context: context);
     // BannerAd banner = admob.getBanner(context);
+    print(widget.hurtRecodeAll[0][0]+widget.hurtRecodeAll[0][1]);
 
     return Scaffold(
         appBar: AppBar(
@@ -58,6 +60,7 @@ class _ThirdDetailState extends State<ThirdDetail> {
           elevation: 0,
           backgroundColor : color1,
           foregroundColor : Theme.of(context).colorScheme.onBackground,
+          // automaticallyImplyLeading: false,
         )
         ,
         body:
@@ -119,14 +122,15 @@ class _ThirdDetailState extends State<ThirdDetail> {
                               ),
                             ),
                             Expanded(child:
-                            Text('총진통시간 ${widget.wholeHurtTime}',
-                              style: const TextStyle(
-                                  fontSize: 14.5
-                                  ,color: color4
-                                  ,height: 1.3
+                              AutoSizeText('총진통시간 ${widget.wholeHurtTime}',
+                                style: const TextStyle(
+                                    fontSize: 14.5
+                                    ,color: color4
+                                    ,height: 1.3
+                                ),
+                                textAlign: TextAlign.start,
+                                maxLines: 1,
                               ),
-                              textAlign: TextAlign.start,
-                            ),
                             ),
                           ],
                         ),
@@ -151,12 +155,13 @@ class _ThirdDetailState extends State<ThirdDetail> {
                               ),
                             ),
                             Expanded(child:
-                            Text(widget.hurtInterval,
+                            AutoSizeText("3회 ${widget.hurtInterval}",
                               style: const TextStyle(
                                   fontSize: 14.5
                                   ,color: color4
                               ),
                               textAlign: TextAlign.start,
+                              maxLines: 1,
                             ),
                             ),
                           ],
@@ -165,7 +170,7 @@ class _ThirdDetailState extends State<ThirdDetail> {
                           height: 20,
                         ),
                         Container(
-                            height: 23,
+                            height: 27,
                             width: double.infinity,
                             child: Row(
                               children: [
@@ -223,28 +228,30 @@ class _ThirdDetailState extends State<ThirdDetail> {
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(30.0, 0.0,
                                     0.0, 0.0),
-                                child: Text(
+                                child: AutoSizeText(
                                   secToText(widget.hurtRecodeAll[index][0]),
                                   style: const TextStyle(
                                       fontSize: 19
                                       ,color: color4
                                   ),
+                                  maxLines: 1,
                                 ),
                               ),
                             ),
                             Expanded(child:
-                            Container(
-                              height : 100,
-                              alignment : Alignment.center,
-                              child: Text(
-                                secToText
-                                  (widget.hurtRecodeAll[index][0]+widget.hurtRecodeAll[index][1]),
-                                style: const TextStyle(
-                                    fontSize: 26
-                                    ,color: color5
+                              Container(
+                                height : 100,
+                                alignment : Alignment.center,
+                                child: AutoSizeText(
+                                  secToText
+                                    (widget.hurtRecodeAll[index][0]+widget.hurtRecodeAll[index][1]),
+                                  style: const TextStyle(
+                                      fontSize: 26
+                                      ,color: color5
+                                  ),
+                                  maxLines: 1,
                                 ),
                               ),
-                            ),
                             ),
                             Container(
                               height : 100,
@@ -252,12 +259,13 @@ class _ThirdDetailState extends State<ThirdDetail> {
                               alignment : Alignment.center,
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-                                child: Text(
+                                child: AutoSizeText(
                                   secToText(widget.hurtRecodeAll[index][1]),
                                   style: const TextStyle(
                                       fontSize: 19
                                       ,color: color4
                                   ),
+                                  maxLines: 1,
                                 ),
                               ),
                             ),

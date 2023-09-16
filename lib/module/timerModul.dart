@@ -44,11 +44,19 @@ class TimerModule with ChangeNotifier{
       // int secFromStream
       ) async {
     if (_cnt != 0){
+      // print('starthurt _secsHurt $_secsHurt');
+      // print('starthurt _secs $_secs');
       _lapTime.insert(
           0,
           [_secsHurt, _secs - _secsHurt, _secs] // _secs_hurt 진통 시간, 휴식 시간, 총 시간
+      //     [25+21*60+3*60*60, (1+17*60+22*60*60),
+      // 1+17*60+22*60*60 + (25+21*60+3*60*60)] //
+        // _secs_hurt 진통 시간, 휴식
+        // 시간,
+        // 총 시간
       );
     }
+    // print('starthurt _lapTime $_lapTime');
     _secs = 0;
     _isRunning = true;
     _hurt = true;
@@ -61,7 +69,10 @@ class TimerModule with ChangeNotifier{
         // _secs ++;
         DateTime _targetTime = DateTime.now();
         final datetimediff = _targetTime.difference(_startTime);
-        _secs = datetimediff.inSeconds;
+        // test
+        _secs = datetimediff.inSeconds ;
+        // print('이게 먼저 되나보지? $_secs');
+        // _secs = 25*60+35;
         // print(_secs);
         // print(_startTime);
         // print(_targetTime);
@@ -75,12 +86,16 @@ class TimerModule with ChangeNotifier{
 
   void gonehurt(){
     _hurt = false;
+    // _secs = 25*60*2+35;
     _secsHurt = _secs;
   }
 
   void resetTimer() async {
     // save log to db
     if (_theDayTime != ''){
+
+      print('resetTimer ${lapTime}');
+
       String step3Sv = listToString(lapTime);
       await _model.timeInsert(DaytimeModel(
         Thedaytime: _theDayTime,

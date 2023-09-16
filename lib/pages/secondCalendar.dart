@@ -90,6 +90,9 @@ class _SecondCalendarState extends State<SecondCalendar> {
   }
 
   List<List<int>> StringToLLI(String laptimeString){
+
+    // print(laptimeString);
+
     List<int> laptimeListAll = json.decode(laptimeString).cast<int>().toList();
     int intforeach = (laptimeListAll.length/2).toInt();
     final tmpList = List<int>.generate(intforeach, (int index) => index * 2);
@@ -99,6 +102,8 @@ class _SecondCalendarState extends State<SecondCalendar> {
     for (var value in tmpList){
       laptime.add([laptimeListAll[value],laptimeListAll[value+1]]);
     }
+
+    // print(laptime);
 
     return laptime;
   }
@@ -173,6 +178,8 @@ class _SecondCalendarState extends State<SecondCalendar> {
                         itemBuilder: (context, idx) {
                           return InkWell(
                             onTap: (){
+
+                              print(value[idx].sec_all);
                               // print('test');
                               Navigator.push(context, MaterialPageRoute(builder:
                                   (context) => ThirdDetail(
@@ -207,7 +214,7 @@ class _SecondCalendarState extends State<SecondCalendar> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        // print(value[idx].iteration);
+                                        print(value[idx].iteration);
                                         _model.timeDelete(
                                             value[idx].iteration
                                         );
