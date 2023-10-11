@@ -233,63 +233,63 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
             //     }
             //     , icon: Icon(Icons.baby_changing_station)
             // ),
-            IconButton(onPressed: (){
-              showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                  surfaceTintColor:Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  title: const Text('전면 광고를 보시겠습니까?',
-                    style: TextStyle(fontSize: 17,
-                       ),),
-                  content: const Text('개발자를 위해 5초만 기부해주세요',
-                    style: TextStyle
-                    (fontSize: 13.5,
-                      color: Color(0xFF7C7A7A)),),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context, 'Cancel');
-                      },
-                      style: TextButton.styleFrom(
-                          foregroundColor: color4
-                      ),
-                      child: const Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        if (_interstitialAd == null){
-                          // print('no add');
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              //SnackBar 구현하는법 context는 위에 BuildContext에 있는 객체를 그대로 가져오면 됨.
-                              SnackBar(
-                                content: Text('광고가 아직 준비되지 않았습니다.'), //snack
-                                duration: Duration(seconds: 3), //올라와있는 시간
-                                action: SnackBarAction( //추가로 작업을 넣기. 버튼넣기라 생각하면 편하다.
-                                  label: 'Undo', //버튼이름
-                                  onPressed: (){}, //버튼 눌렀을때.
-                                ),
-                              )
-                          );
-                        } else {
-                          _interstitialAd!.show();
-                        }
-                        // _interstitialAd!.show();
-                        Navigator.pop(context, 'OK');
-                      },
-                      style: TextButton.styleFrom(
-                          foregroundColor: color4
-                      ),
-                      child: const Text('OK'),
-                    ),
-                  ],
-                ),
-              );
-            },
-            icon: Icon(Icons.coffee_rounded),
-            ),
+            // IconButton(onPressed: (){
+            //   showDialog<String>(
+            //     context: context,
+            //     builder: (BuildContext context) => AlertDialog(
+            //       surfaceTintColor:Colors.white,
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(10),
+            //       ),
+            //       title: const Text('전면 광고를 보시겠습니까?',
+            //         style: TextStyle(fontSize: 17,
+            //            ),),
+            //       content: const Text('개발자를 위해 5초만 기부해주세요',
+            //         style: TextStyle
+            //         (fontSize: 13.5,
+            //           color: Color(0xFF7C7A7A)),),
+            //       actions: <Widget>[
+            //         TextButton(
+            //           onPressed: () {
+            //             Navigator.pop(context, 'Cancel');
+            //           },
+            //           style: TextButton.styleFrom(
+            //               foregroundColor: color4
+            //           ),
+            //           child: const Text('Cancel'),
+            //         ),
+            //         TextButton(
+            //           onPressed: () {
+            //             if (_interstitialAd == null){
+            //               // print('no add');
+            //               ScaffoldMessenger.of(context).showSnackBar(
+            //                   //SnackBar 구현하는법 context는 위에 BuildContext에 있는 객체를 그대로 가져오면 됨.
+            //                   SnackBar(
+            //                     content: Text('광고가 아직 준비되지 않았습니다.'), //snack
+            //                     duration: Duration(seconds: 3), //올라와있는 시간
+            //                     action: SnackBarAction( //추가로 작업을 넣기. 버튼넣기라 생각하면 편하다.
+            //                       label: 'Undo', //버튼이름
+            //                       onPressed: (){}, //버튼 눌렀을때.
+            //                     ),
+            //                   )
+            //               );
+            //             } else {
+            //               _interstitialAd!.show();
+            //             }
+            //             // _interstitialAd!.show();
+            //             Navigator.pop(context, 'OK');
+            //           },
+            //           style: TextButton.styleFrom(
+            //               foregroundColor: color4
+            //           ),
+            //           child: const Text('OK'),
+            //         ),
+            //       ],
+            //     ),
+            //   );
+            // },
+            // icon: Icon(Icons.coffee_rounded),
+            // ),
             IconButton(
               icon:const Icon(Icons.refresh
                 ,color: Colors.black,
