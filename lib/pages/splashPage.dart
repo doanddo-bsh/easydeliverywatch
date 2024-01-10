@@ -3,6 +3,7 @@ import 'package:easydeliverywatch/module/color_def.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'myMainPage.dart';
 import 'dart:async';
+import '../regulation/initialize_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -15,10 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-      Duration(milliseconds: 1500),
+      Duration(milliseconds: 1000),
           () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const MyMainPage()),
+        MaterialPageRoute(builder: (context) => InitializeScreen
+          (targetWidget:MyMainPage())),
       ),
     );
   }

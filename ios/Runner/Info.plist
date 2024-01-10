@@ -28,6 +28,8 @@
 	<string>ca-app-pub-7191096510845066~8045618465</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>추적을 허용하시면, 관심사 맞춤형 광고를 받을 수 있습니다. 추적을 허용하지 않더라도 광고는 노출됩니다.</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
@@ -230,7 +232,9 @@
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>
-	<array/>
+	<array>
+		<string>fetch</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -244,7 +248,5 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>NSUserTrackingUsageDescription</key>
-    <string>추적을 허용하시면, 관심사 맞춤형 광고를 받을 수 있습니다. 추적을 허용하지 않더라도 광고는 노출됩니다.</string>
 </dict>
 </plist>
