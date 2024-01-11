@@ -67,6 +67,7 @@ class InitializationHelper {
   }
 
   // Now we will create a private method that loads and displays the message:
+  // old version
 
   // void _loadConsentForm() {
   //   ConsentForm.loadConsentForm((consentForm) async {
@@ -89,6 +90,7 @@ class InitializationHelper {
   // we are going to add another method that will be in charge of
   // initializing the consent-dependent components:
 
+  // final version
   Future<FormError?> _loadConsentForm() async {
     final completer = Completer<FormError?>();
 

@@ -18,7 +18,7 @@ class _InitializeScreenState extends State<InitializeScreen> {
   void initState() {
     super.initState();
 
-    print('############ InitializeScreen initState');
+    // print('############ InitializeScreen initState');
 
     _initialize();
   }
