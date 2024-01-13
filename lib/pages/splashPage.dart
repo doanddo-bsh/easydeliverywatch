@@ -19,8 +19,11 @@ class _SplashScreenState extends State<SplashScreen> {
       Duration(milliseconds: 1000),
           () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => InitializeScreen
-          (targetWidget:MyMainPage())),
+        MaterialPageRoute(builder: (context) =>
+            InitializeScreen(
+                targetWidget:MyMainPage()
+            )
+        ),
       ),
     );
   }

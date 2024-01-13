@@ -17,6 +17,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'afterdelivery.dart';
 import 'flutterScatter.dart';
+import 'privacySettingPage.dart';
+import 'package:async_preferences/async_preferences.dart';
+import 'package:easydeliverywatch/regulation/initialization_helper.dart';
 
 class MyMainPage extends StatelessWidget {
   const MyMainPage({Key? key}) : super(key: key);
@@ -68,6 +71,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
     _createBannerAd();
     loadAd();
     WidgetsBinding.instance.addObserver(this);
+
+    _future = _isUnderGdpr();
   }
 
   @override
@@ -192,6 +197,14 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
   Future<bool> _onWillPop() async {
     return false; //<-- SEE HERE
   }
+
+  final _initializationHelper = InitializationHelper();
+  late final Future<bool> _future ;
+
+  Future<bool> _isUnderGdpr() async {
+    final preferences = AsyncPreferences();
+    return await preferences.getInt('IABTCF_gdprApplies') == 1;
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -223,7 +236,24 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
             ),
           ),
           actions: [
-
+            FutureBuilder<bool>(
+              future:_future,
+              builder: (context,snapshot){
+                if (snapshot.hasData && snapshot.data == true) {
+                  return IconButton(
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => PrivacySettingPage()
+                        )
+                        );
+                      },
+                      icon: Icon(Icons.privacy_tip_rounded)
+                  );
+                } else {
+                  return SizedBox();
+                }
+              },
+            ),
             IconButton(
               icon:const Icon(Icons.refresh
                 ,color: Colors.black,
@@ -309,7 +339,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
               }
               // timer.resetTimer();
             },
-            )
+            ),
           ],
           backgroundColor : color1,
         )
