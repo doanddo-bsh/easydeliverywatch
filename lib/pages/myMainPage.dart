@@ -15,8 +15,6 @@ import '../module/sqliteDayTime.dart';
 import 'secondCalendar.dart';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'afterdelivery.dart';
-import 'flutterScatter.dart';
 import 'privacySettingPage.dart';
 import 'package:async_preferences/async_preferences.dart';
 import 'package:easydeliverywatch/regulation/initialization_helper.dart';
