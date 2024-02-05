@@ -12,7 +12,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp]); // 가로모드 막기
-  // MobileAds.instance.initialize();
+  MobileAds.instance.initialize();
   // MobileAds.instance.updateRequestConfiguration(
   //     RequestConfiguration(testDeviceIds: ['09b182c1097886c9f957eae5ec353c6b'])
   // );

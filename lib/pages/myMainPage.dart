@@ -64,6 +64,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
   void initState(){
     super.initState();
 
+    // IDFA 대응
     WidgetsBinding.instance.addPostFrameCallback((_) =>initPlugin());
 
     _createBannerAd();
