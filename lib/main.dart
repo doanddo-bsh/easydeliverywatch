@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../pages/splashPage.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '../module/color_def.dart';
-import '../pages/myMainPage.dart';
 
 Future<void> main() async {
   await initializeDateFormatting(); // 달력 한국어 활용 목적
