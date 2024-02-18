@@ -16,6 +16,7 @@ class TimerModule with ChangeNotifier{
   int _cnt = 0;
   Timer? _timer;
   final List<List<int>> _lapTime = [];
+  final List<int> _lapTime_type2 = [];
   int _check5MinYn = 0 ;
   bool _isFirst = false;
   int _minWarning = 5;
@@ -28,6 +29,7 @@ class TimerModule with ChangeNotifier{
   int get secondsHurt => _secsHurt;
   int get cnt => _cnt;
   List<List<int>> get lapTime => _lapTime;
+  List<int> get lapTime_type2 => _lapTime_type2;
   int get check5MinYn => _check5MinYn ;
   bool get isFirst => _isFirst;
   int get minWarning => _minWarning;
@@ -54,7 +56,13 @@ class TimerModule with ChangeNotifier{
         // _secs_hurt 진통 시간, 휴식
         // 시간,
         // 총 시간
+
       );
+
+      lapTime_type2.insert(0, _secs);
+
+      print(_lapTime);
+      print('lapTime_type2 $lapTime_type2');
     }
     // print('starthurt _lapTime $_lapTime');
     _secs = 0;
@@ -88,6 +96,9 @@ class TimerModule with ChangeNotifier{
     _hurt = false;
     // _secs = 25*60*2+35;
     _secsHurt = _secs;
+
+    lapTime_type2.insert(0, _secsHurt);
+    print('lapTime_type2 $lapTime_type2');
   }
 
   void resetTimer() async {

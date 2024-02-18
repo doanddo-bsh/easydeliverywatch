@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easydeliverywatch/module/color_def.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'myMainPage.dart';
 import 'dart:async';
@@ -36,19 +37,10 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         //height : MediaQuery.of(context).size.height,
         //color: kPrimaryColor,
-        child: const Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 270),
-            // Container(
-            //   height: 100.0,
-            //   width: 100.0,
-            //   child: const Image(image: AssetImage
-            //     ('assets/appIcon/easydeliveryAppicon7_space'
-            //       '.png')
-            //   ),
-            // ),
-            SizedBox(height: 20.0,),
+            SizedBox(height: 290.h),
             Text('진통워치',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -57,14 +49,14 @@ class _SplashScreenState extends State<SplashScreen> {
                     color: color4
                 )
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 30.h),
             SpinKitPumpingHeart(
               color: color2,
               size: 60,
             ),
             Expanded(child: SizedBox()),
             Align(
-              child: Text("© Copyright 2023, 진통워치(Hwatch)",
+              child: Text("© Copyright 2023, seohwa lee",
                   style: TextStyle(
                    // fontWeight: FontWeight.bold,
                     fontSize: 12.0,
@@ -72,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   )
               ),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 50.h),
           ],
         ),
 

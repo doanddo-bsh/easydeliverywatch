@@ -4,6 +4,7 @@ import '../module/udf.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../module/color_def.dart';
 import '../module/admob_class.dart';
+import 'logFormat_1_basic.dart';
 
 class ThirdDetail extends StatefulWidget {
 
@@ -52,6 +53,7 @@ class _ThirdDetailState extends State<ThirdDetail> {
     // Admob admob = Admob(context: context);
     // BannerAd banner = admob.getBanner(context);
     print(widget.hurtRecodeAll[0][0]+widget.hurtRecodeAll[0][1]);
+    print(widget.hurtRecodeAll);
 
     return Scaffold(
         appBar: AppBar(
@@ -206,74 +208,80 @@ class _ThirdDetailState extends State<ThirdDetail> {
                 ),
 
                 Expanded(child:
-                ListView.separated(
-                    separatorBuilder: (BuildContext context, int index)
-                    => Divider(
-                      color: Colors.grey[400],
-                      indent: 20,
-                      endIndent: 20,
-                      height: 0.0,),
-                    itemCount: widget.hurtRecodeAll.length,
-                    itemBuilder: (context, index){
-                      return Container(
-                        height: 100.0,
-                        color: Colors.white70,
-                        child:
-                        Row(
-                          children: [
-                            Container(
-                              height : 100,
-                              width: 130,
-                              alignment : Alignment.center,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(30.0, 0.0,
-                                    0.0, 0.0),
-                                child: AutoSizeText(
-                                  secToText(widget.hurtRecodeAll[index][0]),
-                                  style: const TextStyle(
-                                      fontSize: 19
-                                      ,color: color4
-                                  ),
-                                  maxLines: 1,
-                                ),
-                              ),
-                            ),
-                            Expanded(child:
-                              Container(
-                                height : 100,
-                                alignment : Alignment.center,
-                                child: AutoSizeText(
-                                  secToText
-                                    (widget.hurtRecodeAll[index][0]+widget.hurtRecodeAll[index][1]),
-                                  style: const TextStyle(
-                                      fontSize: 26
-                                      ,color: color5
-                                  ),
-                                  maxLines: 1,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              height : 100,
-                              width: 130,
-                              alignment : Alignment.center,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-                                child: AutoSizeText(
-                                  secToText(widget.hurtRecodeAll[index][1]),
-                                  style: const TextStyle(
-                                      fontSize: 19
-                                      ,color: color4
-                                  ),
-                                  maxLines: 1,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                )
+                  ListView.separated(
+                      separatorBuilder: (BuildContext context, int index)
+                      => Divider(
+                        color: Colors.grey[400],
+                        indent: 20,
+                        endIndent: 20,
+                        height: 0.0,),
+                      itemCount: widget.hurtRecodeAll.length,
+                      itemBuilder: (context, index){
+                        return
+                          logFormat_1_basic(
+                            widget.hurtRecodeAll[index][0],
+                            widget.hurtRecodeAll[index][1],
+                            30.0,
+                          );
+                        // Container(
+                        //   height: 100.0,
+                        //   color: Colors.white70,
+                        //   child:
+                        //   Row(
+                        //     children: [
+                        //       Container(
+                        //         height : 100,
+                        //         width: 130,
+                        //         alignment : Alignment.center,
+                        //         child: Padding(
+                        //           padding: const EdgeInsets.fromLTRB(30.0, 0.0,
+                        //               0.0, 0.0),
+                        //           child: AutoSizeText(
+                        //             secToText(widget.hurtRecodeAll[index][0]),
+                        //             style: const TextStyle(
+                        //                 fontSize: 19
+                        //                 ,color: color4
+                        //             ),
+                        //             maxLines: 1,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       Expanded(child:
+                        //         Container(
+                        //           height : 100,
+                        //           alignment : Alignment.center,
+                        //           child: AutoSizeText(
+                        //             secToText
+                        //               (widget.hurtRecodeAll[index][0]+widget.hurtRecodeAll[index][1]),
+                        //             style: const TextStyle(
+                        //                 fontSize: 26
+                        //                 ,color: color5
+                        //             ),
+                        //             maxLines: 1,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       Container(
+                        //         height : 100,
+                        //         width: 130,
+                        //         alignment : Alignment.center,
+                        //         child: Padding(
+                        //           padding: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+                        //           child: AutoSizeText(
+                        //             secToText(widget.hurtRecodeAll[index][1]),
+                        //             style: const TextStyle(
+                        //                 fontSize: 19
+                        //                 ,color: color4
+                        //             ),
+                        //             maxLines: 1,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // );
+                      }
+                  )
                 ),
                 Container(
                   alignment: Alignment.center,

@@ -24,17 +24,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // 변경 전
-    // return MaterialApp(
-    //   title: 'easy Delivery Watch',
-    //   theme: ThemeData(
-    //     colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-    //     useMaterial3: true,
-    //   ),
-    //   home: const MyMainPage(),
-    // );
-
-    // 변경 후
     return ScreenUtilInit(
         designSize: const Size(390, 844),
         builder: (context, child) => MaterialApp(
@@ -46,24 +35,14 @@ class MyApp extends StatelessWidget {
           ),
           builder: (context, child){
             return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                data: MediaQuery.of(context).copyWith(
+                    textScaler: TextScaler.linear(1.0)
+                ),
                 child: child!);
           },
           home: child,
         ),
       child: SplashScreen(),
-      // child: MyMainPage(),
     );
   }
 }
-
-// class MyHomePage extends StatelessWidget {
-//   const MyHomePage({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//
-//     return const MyMainPage();
-//
-//   }
-// }

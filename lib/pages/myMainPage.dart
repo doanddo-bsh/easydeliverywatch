@@ -18,6 +18,10 @@ import 'package:flutter/foundation.dart';
 import 'privacySettingPage.dart';
 import 'package:async_preferences/async_preferences.dart';
 import 'package:easydeliverywatch/regulation/initialization_helper.dart';
+import 'logFormat_1_basic.dart';
+import 'logFormat_2_9m.dart';
+import '../pageOption_1_basic/basic_myMainPage_body.dart';
+import '../pageOption_2_connecting/connecting_myMainPage_body.dart';
 
 class MyMainPage extends StatelessWidget {
   const MyMainPage({Key? key}) : super(key: key);
@@ -87,16 +91,16 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
     super.didChangeAppLifecycleState(state);
     switch(state){
       case AppLifecycleState.resumed:
-        // print('resumed');
+        print('resumed');
         break;
       case AppLifecycleState.inactive:
-        // print('inactive');
+        print('inactive');
         break;
       case AppLifecycleState.hidden:  // <-- This is the new state.
-        // print('hidden');
+        print('hidden');
         break;
       case AppLifecycleState.detached:
-        // print('detached');
+        print('detached');
         if (timer.lapTime.length > 0){
           timer.resetTimer();
         }
@@ -204,12 +208,15 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
     final preferences = AsyncPreferences();
     return await preferences.getInt('IABTCF_gdprApplies') == 1;
   }
+
+  String logFormat = 'basic';
   
   @override
   Widget build(BuildContext context) {
 
     TimerModule timer = Provider.of<TimerModule>(context);
     final List<List<int>> lapTime = timer.lapTime;
+    final List<int> lapTimeType2 = timer.lapTime_type2;
 
     return WillPopScope(
       onWillPop: _onWillPop,
@@ -235,6 +242,16 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
             ),
           ),
           actions: [
+            IconButton(
+                onPressed: (){
+                  if (logFormat == 'basic'){
+                    logFormat = 'new';
+                  } else {
+                    logFormat = 'basic';
+                  }
+                }
+                , icon: Icon(Icons.emoji_emotions_outlined)
+            ),
             FutureBuilder<bool>(
               future:_future,
               builder: (context,snapshot){
@@ -349,289 +366,247 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
         //     height: MediaQuery.of(context).size.height * 1,
         //     child: Stack(
         //       children: [
-                SafeArea(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: 30,
-                          decoration: const BoxDecoration(color: color1),
-                          width: double.infinity,
-                          child: Center(
-                              child:Text(timer.hurt? '진통중' : '휴식중'
-                                ,style: TextStyle(
-                                  fontSize: 20,
-                                  color: timer.hurt? color3 : color2,
-                                ),
-                              )
-                          ),
-                        ),
-                        Container(
-                          height: 65,
-                          decoration: const BoxDecoration(color: color1),
-                          width: double.infinity,
-                          child: Center(
-                              child:AutoSizeText(
-                                secToText(timer.seconds)
-                                ,style: TextStyle(
-                                fontSize: 55,
-                                color: timer.hurt? color3 : color2,
-                                ),
-                                maxLines: 1,
-                              )
-                          ),
-                        ),
-                        Container(
-                          height: 15,
-                          color: color1,
-                        ),
-                        Container(
-                          decoration: const BoxDecoration(color: color1),
-                          width: double.infinity,
-                          child: Center(
-                              child:Text(hurtAvgFnc(lapTime)
-                                ,style: const TextStyle(
-                                    fontSize:16
-                                    ,color: color4
-                                ),)
-                          ),
-                        ),
-                        Container(
-                          height: 20,
-                          color: color1,
-                        ),
-                        Container(
-                            decoration: const BoxDecoration(color: color1),
-                            width: double.infinity,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 140,
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        50.0,0.0,0.0,0.0),
-                                    child: Text('진통',
-                                      style: TextStyle(
-                                        fontSize:20
-                                        ,color: timer.hurt? color4 : color4,
-                                        //fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const Expanded(child: SizedBox()),
-                                Container(
-                                  width: 140,
-                                  alignment: Alignment.center,
-                                  child: Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        0.0,0.0,55.0,0.0),
-                                    child: Text('휴식',
-                                      style: TextStyle(
-                                        fontSize:20
-                                        ,color: timer.hurt? color4 : color4,
-                                        // fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            )
-                        ),
-                        Container(
-                          height: 18,
-                          color: color1,
-                        ),
-                        const Divider(
-                          height: 1.0,
-                          color: Colors.white,
-                          thickness:1.0,
-                        ),
-                        Expanded(child:
-                        Scrollbar(
-                          controller: _scrollController,
-                          child: ListView.separated(
-                            controller: _scrollController,
-                            itemCount: lapTime.length + 1,
-                            itemBuilder: (context, index){
-                              if (index == lapTime.length) {
-                                return Container(
-                                  // height: 600.0,
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white70
-                                    ),
-                                    child: Center(child:
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(30.0,
-                                          18.0, 30.0, 10.0),
-                                      child: Column(
-                                        children: [
-                                          const SizedBox(height: 20.0,),
-                                          const Text("진통이 시작되면 [진통 시작] 버튼"
-                                              "\n진통이 멈추면 [진통 멈춤] 버튼을 눌러주세요"
-                                            ,textAlign: TextAlign.center
-                                            ,style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 12.0,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 10.0,),
-                                          const Text("초산모는 5분 미만의 진통주기가 되면"
-                                              "\n알려주는 [초산]모드를 사용해주세요."
-                                              "\n"
-                                              "\n경산모는 10분 미만의 진통주기가 되면 "
-                                              "\n알려주는 [경산]모드를 사용해주세요."
-                                              "\n"
-                                              " \n(초산 글자가 보이면 초산 모드입니다.)"
-                                            ,textAlign: TextAlign.center
-                                            ,style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 12.0,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 20.0,),
-                                          Text("‘진진통’은 ’진통간격이 점차 짧아져 평균 주기가"
-                                              "\n5분간격으로 좁혀지고 일정한 규칙성을 보입니다."
-                                            ,textAlign: TextAlign.center
-                                            ,style: TextStyle(
-                                              color: Colors.grey[400],
-                                              fontSize: 12.0,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 10.0,),
-                                          Text("*통상적으로 경산이 초산보다 자궁경부가 열리는 속도가"
-                                              "\n더 빠르기 때문에 초산은  5분이하, 경산은 "
-                                              "10분이하의\n진통 간격을 가지면 병원에 가야합니다*"
-                                            ,textAlign: TextAlign.center
-                                            ,style: TextStyle(
-                                              color: Colors.grey[400],
-                                              fontSize: 12.0,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 10.0,),
-                                          Text("‘가진통’은 간격과 주기가 일정하지 않으며 10분 이상의"
-                                              "\n불규칙한 간격을 갖습니다. 통증도 생리통정도의 강도로 "
-                                              "\n자세를 바꾸면 통증이 점점 약해집니다."
-                                            ,textAlign: TextAlign.center
-                                            ,style: TextStyle(
-                                              color: Colors.grey[400],
-                                              fontSize: 12.0,
-                                            ),
-                                          ),
-                                          const SizedBox(height: 20.0,),
-                                           const Text("이 앱은 의료 기기가 아닙니다." "\n수축의 "
-                                               "빈도와 간격은"
-                                              "표준 지표를 기반으로 한 것이며 "
-                                              "\n절대적인 "
-                                              "기준이 아니니 자세한 내용은 "
-                                              "의사와 상담할 것을 권합니다."
-                                            ,textAlign: TextAlign.center
-                                            ,style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                          // SizedBox(height: 7.0,),
-                                          const Text("견디기 힘든 통증이거나 "
-                                              "양수가 터지거나 피가 비치는 경우\n즉시 병원으로 가는 것을"
-                                              " 권합니다."
-                                            ,textAlign: TextAlign.center
-                                            ,style: TextStyle(
-                                              color: Colors.black87,
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 130.0,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    )
-                                );
-                              } else {
-                                return Container(
-                                  height: 100.0,
-                                  color: Colors.white70,
-                                  // duration: Duration(seconds: 5),
-                                  // Provide an optional curve to make the animation feel smoother.
-                                  // curve: Curves.fastOutSlowIn,
-                                  child:
-                                  Row(
-                                    children: [
-                                      Container(
-                                        height: 100,
-                                        width: 130,
-                                        alignment: Alignment.center,
-                                        child: Padding(
-                                          padding: const EdgeInsets.fromLTRB(60.0, 0.0, 0.0, 0.0),
-                                          child: AutoSizeText(
-                                            secToText(lapTime[index][0]),
-                                            style: const TextStyle(
-                                                fontSize: 19,
-                                                color: color4
-                                            ),
-                                            maxLines: 1,
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(child:
-                                      Container(
-                                        height: 100,
-                                        alignment: Alignment.center,
-                                        child: AutoSizeText(
-                                          secToText(lapTime[index][2]),
-                                          style: const TextStyle(
-                                            fontSize: 26
-                                            ,color: color5,
-                                          ),
-                                          maxLines: 1,
-                                        ),
-                                      ),
-                                      ),
-                                      Container(
-                                        height: 100,
-                                        width: 130,
-                                        alignment: Alignment.center,
-                                        child: Padding(
-                                          padding: const EdgeInsets.fromLTRB(0.0, 0.0, 60.0, 0.0),
-                                          child: AutoSizeText(
-                                            secToText(lapTime[index][1]),
-                                            style: const TextStyle(
-                                                fontSize: 19,
-                                                color: color4
-                                            ),
-                                            maxLines: 1,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }
-                            },
-                            separatorBuilder: (BuildContext context, int index)
-                            => Divider(
-                              color: Colors.grey[400],
-                              indent: 20,
-                              endIndent: 20,
-                              height: 0.0,),
-                            ),
-                        ),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          width: _banner!.size.width.toDouble(),
-                          height: _banner!.size.height.toDouble(),
-                          child: AdWidget(
-                            ad: _banner!,
-                          ),
-                        ),
-                      ],
-                    )
-                ),
+        (logFormat=='basic')?
+        basicMyMainPageBody(
+          timer,
+          lapTime,
+          _scrollController,
+          _banner,
+        ):connectingMyMainPageBody(
+            lapTimeType2
+        ),
+                // SafeArea(
+                //     child: Column(
+                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //       children: [
+                //         Container(
+                //           height: 30,
+                //           decoration: const BoxDecoration(color: color1),
+                //           width: double.infinity,
+                //           child: Center(
+                //               child:Text(timer.hurt? '진통중' : '휴식중'
+                //                 ,style: TextStyle(
+                //                   fontSize: 20,
+                //                   color: timer.hurt? color3 : color2,
+                //                 ),
+                //               )
+                //           ),
+                //         ),
+                //         Container(
+                //           height: 65,
+                //           decoration: const BoxDecoration(color: color1),
+                //           width: double.infinity,
+                //           child: Center(
+                //               child:AutoSizeText(
+                //                 secToText(timer.seconds)
+                //                 ,style: TextStyle(
+                //                 fontSize: 55,
+                //                 color: timer.hurt? color3 : color2,
+                //                 ),
+                //                 maxLines: 1,
+                //               )
+                //           ),
+                //         ),
+                //         Container(
+                //           height: 15,
+                //           color: color1,
+                //         ),
+                //         Container(
+                //           decoration: const BoxDecoration(color: color1),
+                //           width: double.infinity,
+                //           child: Center(
+                //               child:Text(hurtAvgFnc(lapTime)
+                //                 ,style: const TextStyle(
+                //                     fontSize:16
+                //                     ,color: color4
+                //                 ),)
+                //           ),
+                //         ),
+                //         Container(
+                //           height: 20,
+                //           color: color1,
+                //         ),
+                //         Container(
+                //             decoration: const BoxDecoration(color: color1),
+                //             width: double.infinity,
+                //             child: Row(
+                //               mainAxisAlignment: MainAxisAlignment.center,
+                //               children: [
+                //                 Container(
+                //                   width: 140,
+                //                   alignment: Alignment.center,
+                //                   child: Padding(
+                //                     padding: const EdgeInsets.fromLTRB(
+                //                         50.0,0.0,0.0,0.0),
+                //                     child: Text('진통',
+                //                       style: TextStyle(
+                //                         fontSize:20
+                //                         ,color: timer.hurt? color4 : color4,
+                //                         //fontWeight: FontWeight.bold
+                //                       ),
+                //                     ),
+                //                   ),
+                //                 ),
+                //                 const Expanded(child: SizedBox()),
+                //                 Container(
+                //                   width: 140,
+                //                   alignment: Alignment.center,
+                //                   child: Padding(
+                //                     padding: const EdgeInsets.fromLTRB(
+                //                         0.0,0.0,55.0,0.0),
+                //                     child: Text('휴식',
+                //                       style: TextStyle(
+                //                         fontSize:20
+                //                         ,color: timer.hurt? color4 : color4,
+                //                         // fontWeight: FontWeight.bold
+                //                       ),
+                //                     ),
+                //                   ),
+                //                 )
+                //               ],
+                //             )
+                //         ),
+                //         Container(
+                //           height: 18,
+                //           color: color1,
+                //         ),
+                //         const Divider(
+                //           height: 1.0,
+                //           color: Colors.white,
+                //           thickness:1.0,
+                //         ),
+                //         Expanded(child:
+                //           Scrollbar(
+                //             controller: _scrollController,
+                //             child: ListView.separated(
+                //               controller: _scrollController,
+                //               itemCount: lapTime.length + 1,
+                //               itemBuilder: (context, index){
+                //                 if (index == lapTime.length) {
+                //                   return Container(
+                //                     // height: 600.0,
+                //                       decoration: const BoxDecoration(
+                //                           color: Colors.white70
+                //                       ),
+                //                       child: Center(child:
+                //                       Padding(
+                //                         padding: const EdgeInsets.fromLTRB(30.0,
+                //                             18.0, 30.0, 10.0),
+                //                         child: Column(
+                //                           children: [
+                //                             const SizedBox(height: 20.0,),
+                //                             const Text("진통이 시작되면 [진통 시작] 버튼"
+                //                                 "\n진통이 멈추면 [진통 멈춤] 버튼을 눌러주세요"
+                //                               ,textAlign: TextAlign.center
+                //                               ,style: TextStyle(
+                //                                 color: Colors.black87,
+                //                                 fontSize: 12.0,
+                //                               ),
+                //                             ),
+                //                             const SizedBox(height: 10.0,),
+                //                             const Text("초산모는 5분 미만의 진통주기가 되면"
+                //                                 "\n알려주는 [초산]모드를 사용해주세요."
+                //                                 "\n"
+                //                                 "\n경산모는 10분 미만의 진통주기가 되면 "
+                //                                 "\n알려주는 [경산]모드를 사용해주세요."
+                //                                 "\n"
+                //                                 " \n(초산 글자가 보이면 초산 모드입니다.)"
+                //                               ,textAlign: TextAlign.center
+                //                               ,style: TextStyle(
+                //                                 color: Colors.black87,
+                //                                 fontSize: 12.0,
+                //                               ),
+                //                             ),
+                //                             const SizedBox(height: 20.0,),
+                //                             Text("‘진진통’은 ’진통간격이 점차 짧아져 평균 주기가"
+                //                                 "\n5분간격으로 좁혀지고 일정한 규칙성을 보입니다."
+                //                               ,textAlign: TextAlign.center
+                //                               ,style: TextStyle(
+                //                                 color: Colors.grey[400],
+                //                                 fontSize: 12.0,
+                //                               ),
+                //                             ),
+                //                             const SizedBox(height: 10.0,),
+                //                             Text("*통상적으로 경산이 초산보다 자궁경부가 열리는 속도가"
+                //                                 "\n더 빠르기 때문에 초산은  5분이하, 경산은 "
+                //                                 "10분이하의\n진통 간격을 가지면 병원에 가야합니다*"
+                //                               ,textAlign: TextAlign.center
+                //                               ,style: TextStyle(
+                //                                 color: Colors.grey[400],
+                //                                 fontSize: 12.0,
+                //                               ),
+                //                             ),
+                //                             const SizedBox(height: 10.0,),
+                //                             Text("‘가진통’은 간격과 주기가 일정하지 않으며 10분 이상의"
+                //                                 "\n불규칙한 간격을 갖습니다. 통증도 생리통정도의 강도로 "
+                //                                 "\n자세를 바꾸면 통증이 점점 약해집니다."
+                //                               ,textAlign: TextAlign.center
+                //                               ,style: TextStyle(
+                //                                 color: Colors.grey[400],
+                //                                 fontSize: 12.0,
+                //                               ),
+                //                             ),
+                //                             const SizedBox(height: 20.0,),
+                //                              const Text("이 앱은 의료 기기가 아닙니다." "\n수축의 "
+                //                                  "빈도와 간격은"
+                //                                 "표준 지표를 기반으로 한 것이며 "
+                //                                 "\n절대적인 "
+                //                                 "기준이 아니니 자세한 내용은 "
+                //                                 "의사와 상담할 것을 권합니다."
+                //                               ,textAlign: TextAlign.center
+                //                               ,style: TextStyle(
+                //                                 color: Colors.black87,
+                //                                 fontSize: 10.0,
+                //                               ),
+                //                             ),
+                //                             // SizedBox(height: 7.0,),
+                //                             const Text("견디기 힘든 통증이거나 "
+                //                                 "양수가 터지거나 피가 비치는 경우\n즉시 병원으로 가는 것을"
+                //                                 " 권합니다."
+                //                               ,textAlign: TextAlign.center
+                //                               ,style: TextStyle(
+                //                                 color: Colors.black87,
+                //                                 fontSize: 10.0,
+                //                               ),
+                //                             ),
+                //                             const SizedBox(
+                //                               height: 130.0,
+                //                             )
+                //                           ],
+                //                         ),
+                //                       ),
+                //                       )
+                //                   );
+                //                 } else {
+                //                   return
+                //                     logFormat_1_basic(
+                //                       lapTime[index][0],
+                //                       lapTime[index][1],
+                //                       60.0,
+                //                     );
+                //                 }
+                //               },
+                //               separatorBuilder: (BuildContext context, int index)
+                //               => Divider(
+                //                 color: Colors.grey[400],
+                //                 // color: Colors.white,
+                //                 indent: 20,
+                //                 endIndent: 20,
+                //                 height: 0.0,),
+                //               ),
+                //           ),
+                //         ),
+                //         Container(
+                //           alignment: Alignment.center,
+                //           width: _banner!.size.width.toDouble(),
+                //           height: _banner!.size.height.toDouble(),
+                //           child: AdWidget(
+                //             ad: _banner!,
+                //           ),
+                //         ),
+                //       ],
+                //     )
+                // ),
                 // Positioned.fill(
                 //     bottom: 25,
                 //     child: Align(
@@ -692,7 +667,11 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                     }else{
                       // service.startService();
                       timer.starthurt();
-                      _scrollToTop();
+
+                      // 잠시 중지 for new page test
+                      if (logFormat=='basic'){
+                        _scrollToTop();
+                      }
                       // 최근 3회 평균 진통 주기가 5분 미만 일 경우 알람
                       if ((timer.lapTime.length >=3)
                           &&

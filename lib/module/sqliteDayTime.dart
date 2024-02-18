@@ -72,7 +72,7 @@ class SqliteDayTime {
     await db.delete(
         'daytimeTable',
         where: 'No = ?',
-        whereArgs: [no]
+        whereArgs: [no],
     );
   }
 }
