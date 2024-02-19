@@ -218,6 +218,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
     final List<List<int>> lapTime = timer.lapTime;
     final List<int> lapTimeType2 = timer.lapTime_type2;
 
+    print('lapTimeType2 $lapTimeType2');
+
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
@@ -373,7 +375,10 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
           _scrollController,
           _banner,
         ):connectingMyMainPageBody(
-            lapTimeType2
+            lapTimeType2,
+            timer,
+            _scrollController,
+            context,
         ),
                 // SafeArea(
                 //     child: Column(
@@ -669,9 +674,9 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                       timer.starthurt();
 
                       // 잠시 중지 for new page test
-                      if (logFormat=='basic'){
+                      // if (logFormat=='basic'){
                         _scrollToTop();
-                      }
+                      // }
                       // 최근 3회 평균 진통 주기가 5분 미만 일 경우 알람
                       if ((timer.lapTime.length >=3)
                           &&

@@ -120,6 +120,8 @@ class TimerModule with ChangeNotifier{
     _secs = 0;
     _isRunning = false;
     _lapTime.clear();
+    // test
+    lapTime_type2.clear();
     notifyListeners();
 
     _cnt = 0;
@@ -142,6 +144,8 @@ class TimerModule with ChangeNotifier{
     _secs = 0;
     _isRunning = false;
     _lapTime.clear();
+    // test
+    lapTime_type2.clear();
     notifyListeners();
 
     _cnt = 0;
