@@ -247,9 +247,13 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
             IconButton(
                 onPressed: (){
                   if (logFormat == 'basic'){
-                    logFormat = 'new';
+                    setState(() {
+                      logFormat = 'new';
+                    });
                   } else {
-                    logFormat = 'basic';
+                    setState(() {
+                      logFormat = 'basic';
+                    });
                   }
                 }
                 , icon: Icon(Icons.emoji_emotions_outlined)

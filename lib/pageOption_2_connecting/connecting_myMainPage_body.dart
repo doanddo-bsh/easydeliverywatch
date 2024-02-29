@@ -18,6 +18,10 @@ Widget connectingMyMainPageBody(
       SafeArea(
         child: Column(
           children: [
+            Container(
+              height: 150.h,
+              child: Text('여기 평균 등 넣자'),
+            ),
             Expanded(
               child: Scrollbar(
                 controller: _scrollController,
