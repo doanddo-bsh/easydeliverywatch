@@ -8,8 +8,8 @@ import '../pages/logFormat_1_basic.dart';
 
 
 Widget connectingMyMainPageBody(
-      lapTimeType2,
       timer,
+      lapTimeType2,
       _scrollController,
       context,
     )
@@ -107,7 +107,7 @@ Widget connectingMyMainPageBody(
                                   children: [
                                     Container(
                                       color:Colors.amber,
-                                      width: 30.0.w,
+                                      width: 10.0.w,
                                       height: 50.h,
                                     )
                                   ],

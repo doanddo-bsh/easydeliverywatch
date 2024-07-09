@@ -244,20 +244,20 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
             ),
           ),
           actions: [
-            IconButton(
-                onPressed: (){
-                  if (logFormat == 'basic'){
-                    setState(() {
-                      logFormat = 'new';
-                    });
-                  } else {
-                    setState(() {
-                      logFormat = 'basic';
-                    });
-                  }
-                }
-                , icon: Icon(Icons.emoji_emotions_outlined)
-            ),
+            // IconButton(
+            //     onPressed: (){
+            //       if (logFormat == 'basic'){
+            //         setState(() {
+            //           logFormat = 'new';
+            //         });
+            //       } else {
+            //         setState(() {
+            //           logFormat = 'basic';
+            //         });
+            //       }
+            //     }
+            //     , icon: Icon(Icons.emoji_emotions_outlined)
+            // ),
             FutureBuilder<bool>(
               future:_future,
               builder: (context,snapshot){
@@ -379,8 +379,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
           _scrollController,
           _banner,
         ):connectingMyMainPageBody(
-            lapTimeType2,
             timer,
+            lapTimeType2,
             _scrollController,
             context,
         ),
