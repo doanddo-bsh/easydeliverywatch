@@ -12,6 +12,7 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp]); // 가로모드 막기
   MobileAds.instance.initialize();
+  // test 를 위한 코드
   // MobileAds.instance.updateRequestConfiguration(
   //     RequestConfiguration(testDeviceIds: ['09b182c1097886c9f957eae5ec353c6b'])
   // );
@@ -25,23 +26,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(390, 844),
-        builder: (context, child) => MaterialApp(
-          title: 'easy Delivery Watch',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: color1),
-            useMaterial3: true,
-          ),
-          builder: (context, child){
-            return MediaQuery(
-                data: MediaQuery.of(context).copyWith(
-                    textScaler: TextScaler.linear(1.0)
-                ),
-                child: child!);
-          },
-          home: child,
+      designSize: const Size(390, 844),
+      builder: (context, child) => MaterialApp(
+        title: 'easy Delivery Watch',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: color1),
+          useMaterial3: true,
         ),
+        builder: (context, child) {
+          return MediaQuery(
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: TextScaler.linear(1.0)),
+              child: child!);
+        },
+        home: child,
+      ),
       child: SplashScreen(),
     );
   }

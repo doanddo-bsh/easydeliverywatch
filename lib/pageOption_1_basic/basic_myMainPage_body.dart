@@ -218,6 +218,8 @@ Widget basicMyMainPageBody(
                     } else {
                       return
                         logFormat_1_basic(
+                          lapTime.length,
+                          index,
                           lapTime[index][0],
                           lapTime[index][1],
                           60.0,

@@ -219,6 +219,8 @@ class _ThirdDetailState extends State<ThirdDetail> {
                       itemBuilder: (context, index){
                         return
                           logFormat_1_basic(
+                            widget.hurtRecodeAll.length,
+                            index,
                             widget.hurtRecodeAll[index][0],
                             widget.hurtRecodeAll[index][1],
                             30.0,
