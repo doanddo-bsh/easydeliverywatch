@@ -52,8 +52,8 @@ class _ThirdDetailState extends State<ThirdDetail> {
 
     // Admob admob = Admob(context: context);
     // BannerAd banner = admob.getBanner(context);
-    print(widget.hurtRecodeAll[0][0]+widget.hurtRecodeAll[0][1]);
-    print(widget.hurtRecodeAll);
+    // print(widget.hurtRecodeAll[0][0]+widget.hurtRecodeAll[0][1]);
+    // print(widget.hurtRecodeAll);
 
     return Scaffold(
         appBar: AppBar(

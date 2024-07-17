@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'initialization_helper.dart';
-import '../pages/myMainPage.dart';
 
 class InitializeScreen extends StatefulWidget {
   Widget targetWidget ;

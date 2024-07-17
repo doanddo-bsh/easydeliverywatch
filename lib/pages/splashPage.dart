@@ -17,12 +17,12 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-      Duration(milliseconds: 1000),
+      const Duration(milliseconds: 1000),
           () => Navigator.push(
         context,
         MaterialPageRoute(builder: (context) =>
             InitializeScreen(
-                targetWidget:MyMainPage()
+                targetWidget:const MyMainPage()
             )
         ),
       ),
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             SizedBox(height: 290.h),
-            Text('진통워치',
+            const Text('진통워치',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 33.0,
@@ -50,12 +50,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 )
             ),
             SizedBox(height: 30.h),
-            SpinKitPumpingHeart(
+            const SpinKitPumpingHeart(
               color: color2,
               size: 60,
             ),
-            Expanded(child: SizedBox()),
-            Align(
+            const Expanded(child: SizedBox()),
+            const Align(
               child: Text("© Copyright 2023, seohwa lee",
                   style: TextStyle(
                    // fontWeight: FontWeight.bold,

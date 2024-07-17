@@ -22,7 +22,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
-        child: Container(
+        child: SizedBox(
           width: 300,
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -35,7 +35,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
               const Divider(
                 height: 1,
               ),
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
                 child: InkWell(

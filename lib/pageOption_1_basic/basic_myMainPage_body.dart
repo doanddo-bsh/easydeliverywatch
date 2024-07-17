@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../module/color_def.dart';
 import '../module/udf.dart';
 import '../pages/logFormat_1_basic.dart';
@@ -36,6 +35,7 @@ Widget basicMyMainPageBody(
               width: double.infinity,
               child: Center(
                   child:AutoSizeText(
+                    // seconds를 text로 변경해주는 코드
                     secToText(timer.seconds)
                     ,style: TextStyle(
                     fontSize: 55,
