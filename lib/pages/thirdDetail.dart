@@ -225,63 +225,6 @@ class _ThirdDetailState extends State<ThirdDetail> {
                             widget.hurtRecodeAll[index][1],
                             30.0,
                           );
-                        // Container(
-                        //   height: 100.0,
-                        //   color: Colors.white70,
-                        //   child:
-                        //   Row(
-                        //     children: [
-                        //       Container(
-                        //         height : 100,
-                        //         width: 130,
-                        //         alignment : Alignment.center,
-                        //         child: Padding(
-                        //           padding: const EdgeInsets.fromLTRB(30.0, 0.0,
-                        //               0.0, 0.0),
-                        //           child: AutoSizeText(
-                        //             secToText(widget.hurtRecodeAll[index][0]),
-                        //             style: const TextStyle(
-                        //                 fontSize: 19
-                        //                 ,color: color4
-                        //             ),
-                        //             maxLines: 1,
-                        //           ),
-                        //         ),
-                        //       ),
-                        //       Expanded(child:
-                        //         Container(
-                        //           height : 100,
-                        //           alignment : Alignment.center,
-                        //           child: AutoSizeText(
-                        //             secToText
-                        //               (widget.hurtRecodeAll[index][0]+widget.hurtRecodeAll[index][1]),
-                        //             style: const TextStyle(
-                        //                 fontSize: 26
-                        //                 ,color: color5
-                        //             ),
-                        //             maxLines: 1,
-                        //           ),
-                        //         ),
-                        //       ),
-                        //       Container(
-                        //         height : 100,
-                        //         width: 130,
-                        //         alignment : Alignment.center,
-                        //         child: Padding(
-                        //           padding: const EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
-                        //           child: AutoSizeText(
-                        //             secToText(widget.hurtRecodeAll[index][1]),
-                        //             style: const TextStyle(
-                        //                 fontSize: 19
-                        //                 ,color: color4
-                        //             ),
-                        //             maxLines: 1,
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // );
                       }
                   )
                 ),

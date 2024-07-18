@@ -254,20 +254,20 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
             ),
           ),
           actions: [
-            // IconButton(
-            //     onPressed: (){
-            //       if (logFormat == 'basic'){
-            //         setState(() {
-            //           logFormat = 'new';
-            //         });
-            //       } else {
-            //         setState(() {
-            //           logFormat = 'basic';
-            //         });
-            //       }
-            //     }
-            //     , icon: Icon(Icons.emoji_emotions_outlined)
-            // ),
+            IconButton(
+                onPressed: (){
+                  if (logFormat == 'basic'){
+                    setState(() {
+                      logFormat = 'new';
+                    });
+                  } else {
+                    setState(() {
+                      logFormat = 'basic';
+                    });
+                  }
+                }
+                , icon: Icon(Icons.emoji_emotions_outlined)
+            ),
             FutureBuilder<bool>(
               future: _future,
               builder: (context, snapshot) {
@@ -387,6 +387,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                 lapTimeType2,
                 _scrollController,
                 context,
+                _banner,
               ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: Stack(
