@@ -21,6 +21,7 @@ import '../pageOption_1_basic/basic_myMainPage_body.dart';
 import '../pageOption_2_connecting/connecting_myMainPage_body.dart';
 
 class MyMainPage extends StatelessWidget {
+
   const MyMainPage({Key? key}) : super(key: key);
 
   @override
@@ -28,12 +29,13 @@ class MyMainPage extends StatelessWidget {
     return ChangeNotifierProvider<TimerModule>(
         // provider 활용을 위해 설정함
         create: (BuildContext context) => TimerModule(),
-        child: const MyMainPageBody());
+        child: MyMainPageBody());
   }
 }
 
 class MyMainPageBody extends StatefulWidget {
-  const MyMainPageBody({Key? key}) : super(key: key);
+  const MyMainPageBody({Key? key}) : super(key:
+  key);
 
   @override
   State<MyMainPageBody> createState() => _MyMainPageBodyState();
@@ -208,9 +210,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
   String logFormat = 'basic';
 
   // laptime1 to 2 flatten
-  List<int> flatten(List<List<int>> lapTimeOrg){
-
-    List<int> lapTimeType2 = [] ;
+  List<int> flatten(List<List<int>> lapTimeOrg) {
+    List<int> lapTimeType2 = [];
 
     for (List<int> sublist in lapTimeOrg) {
       lapTimeType2.add(sublist[2]);
@@ -219,7 +220,6 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
 
     return lapTimeType2;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -254,37 +254,49 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
             ),
           ),
           actions: [
+            // 이건 이제 설정 탭으로
+            //   IconButton(
+            //       onPressed: (){
+            //         if (logFormat == 'basic'){
+            //           setState(() {
+            //             logFormat = 'new';
+            //           });
+            //         } else {
+            //           setState(() {
+            //             logFormat = 'basic';
+            //           });
+            //         }
+            //       }
+            //       , icon: Icon(Icons.emoji_emotions_outlined)
+            //   ),
+            //   FutureBuilder<bool>(
+            //     future: _future,
+            //     builder: (context, snapshot) {
+            //       if (snapshot.hasData && snapshot.data == true) {
+            //         return IconButton(
+            //             onPressed: () {
+            //               Navigator.push(
+            //                   context,
+            //                   MaterialPageRoute(
+            //                       builder: (context) => const PrivacySettingPage()));
+            //             },
+            //             icon: const Icon(Icons.privacy_tip_rounded));
+            //       } else {
+            //         return const SizedBox();
+            //       }
+            //     },
+            //   ),
             IconButton(
-                onPressed: (){
-                  if (logFormat == 'basic'){
-                    setState(() {
-                      logFormat = 'new';
-                    });
-                  } else {
-                    setState(() {
-                      logFormat = 'basic';
-                    });
-                  }
-                }
-                , icon: Icon(Icons.emoji_emotions_outlined)
-            ),
-            FutureBuilder<bool>(
-              future: _future,
-              builder: (context, snapshot) {
-                if (snapshot.hasData && snapshot.data == true) {
-                  return IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const PrivacySettingPage()));
-                      },
-                      icon: const Icon(Icons.privacy_tip_rounded));
-                } else {
-                  return const SizedBox();
-                }
-              },
-            ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SettingPage()));
+                },
+                icon: const Icon(
+                  Icons.settings_outlined,
+                  color: Colors.black,
+                )),
             IconButton(
               icon: const Icon(
                 Icons.refresh,
@@ -490,9 +502,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                                               width: 17,
                                               child: Image(
                                                   image: AssetImage(
-                                                      'assets/icons8-siren-100.png')
-                                              )
-                                          ),
+                                                      'assets/icons8-siren-100.png'))),
                                         ],
                                       ),
                                     ],

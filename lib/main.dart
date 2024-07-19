@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../pages/splashPage.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import '../module/color_def.dart';
+import 'package:provider/provider.dart';
+import 'module/darkThemeProvider.dart'; // ThemeProvider 파일 import
 
 Future<void> main() async {
   await initializeDateFormatting(); // 달력 한국어 활용 목적
@@ -16,24 +18,48 @@ Future<void> main() async {
   // MobileAds.instance.updateRequestConfiguration(
   //     RequestConfiguration(testDeviceIds: ['09b182c1097886c9f957eae5ec353c6b'])
   // );
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return ScreenUtilInit(
       designSize: const Size(390, 844),
       builder: (context, child) => MaterialApp(
         title: 'easy Delivery Watch',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: color1),
+          // primarySwatch:color1,
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: color1, brightness: Brightness.light),
           useMaterial3: true,
+          // brightness: Brightness.light),
         ),
+        darkTheme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: color1, brightness: Brightness.dark),
+          useMaterial3: true,
+          // brightness: Brightness.dark),
+        ),
+        themeMode: themeProvider.themeMode,
+        // 시스템 설정에 따라 자동 전환
         builder: (context, child) {
           return MediaQuery(
               data: MediaQuery.of(context)

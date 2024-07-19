@@ -7,6 +7,10 @@ import 'dart:async';
 import '../regulation/initialize_screen.dart';
 
 class SplashScreen extends StatefulWidget {
+
+
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -22,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
         context,
         MaterialPageRoute(builder: (context) =>
             InitializeScreen(
-                targetWidget:const MyMainPage()
+                targetWidget: MyMainPage()
             )
         ),
       ),
