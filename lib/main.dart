@@ -48,13 +48,19 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           // primarySwatch:color1,
           colorScheme: ColorScheme.fromSeed(
-              seedColor: color1, brightness: Brightness.light),
+              seedColor: color1,
+              brightness: Brightness.light,
+              primaryContainer:color1
+          ),
           useMaterial3: true,
           // brightness: Brightness.light),
         ),
         darkTheme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-              seedColor: color1, brightness: Brightness.dark),
+              seedColor: color1,
+              brightness: Brightness.dark,
+              primaryContainer:Colors.black54
+          ),
           useMaterial3: true,
           // brightness: Brightness.dark),
         ),

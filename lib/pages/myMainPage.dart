@@ -391,6 +391,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                 lapTime,
                 _scrollController,
                 _banner,
+                context
               )
             :
             // 신규 화면

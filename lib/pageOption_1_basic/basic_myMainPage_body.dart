@@ -5,12 +5,15 @@ import '../module/color_def.dart';
 import '../module/udf.dart';
 import '../pages/logFormat_1_basic.dart';
 
+
 Widget basicMyMainPageBody(
     timer,
     lapTime,
     _scrollController,
     _banner,
+    context
     ){
+
   return
     SafeArea(
         child: Column(
@@ -18,7 +21,7 @@ Widget basicMyMainPageBody(
           children: [
             Container(
               height: 30,
-              decoration: const BoxDecoration(color: color1),
+              decoration: BoxDecoration(color: color1),
               width: double.infinity,
               child: Center(
                   child:Text(timer.hurt? '진통중' : '휴식중'
@@ -31,7 +34,7 @@ Widget basicMyMainPageBody(
             ),
             Container(
               height: 65,
-              decoration: const BoxDecoration(color: color1),
+              decoration: BoxDecoration(color: color1),
               width: double.infinity,
               child: Center(
                   child:AutoSizeText(
@@ -50,7 +53,7 @@ Widget basicMyMainPageBody(
               color: color1,
             ),
             Container(
-              decoration: const BoxDecoration(color: color1),
+              decoration: BoxDecoration(color: color1),
               width: double.infinity,
               child: Center(
                   child:Text(hurtAvgFnc(lapTime)
@@ -65,7 +68,7 @@ Widget basicMyMainPageBody(
               color: color1,
             ),
             Container(
-                decoration: const BoxDecoration(color: color1),
+                decoration: BoxDecoration(color: color1),
                 width: double.infinity,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -110,7 +113,7 @@ Widget basicMyMainPageBody(
             ),
             const Divider(
               height: 1.0,
-              color: Colors.white,
+              // color: Colors.white,
               thickness:1.0,
             ),
             Expanded(child:
@@ -124,7 +127,7 @@ Widget basicMyMainPageBody(
                       return Container(
                         // height: 600.0,
                           decoration: const BoxDecoration(
-                              color: Colors.white70
+                              // color: Colors.white70
                           ),
                           child: Center(child:
                           Padding(
@@ -137,7 +140,7 @@ Widget basicMyMainPageBody(
                                     "\n진통이 멈추면 [진통 멈춤] 버튼을 눌러주세요"
                                   ,textAlign: TextAlign.center
                                   ,style: TextStyle(
-                                    color: Colors.black87,
+                                    // color: Colors.black87,
                                     fontSize: 12.0,
                                   ),
                                 ),
@@ -151,7 +154,7 @@ Widget basicMyMainPageBody(
                                     " \n(초산 글자가 보이면 초산 모드입니다.)"
                                   ,textAlign: TextAlign.center
                                   ,style: TextStyle(
-                                    color: Colors.black87,
+                                    // color: Colors.black87,
                                     fontSize: 12.0,
                                   ),
                                 ),
@@ -193,7 +196,7 @@ Widget basicMyMainPageBody(
                                     "의사와 상담할 것을 권합니다."
                                   ,textAlign: TextAlign.center
                                   ,style: TextStyle(
-                                    color: Colors.black87,
+                                    // color: Colors.black87,
                                     fontSize: 10.0,
                                   ),
                                 ),
@@ -203,7 +206,7 @@ Widget basicMyMainPageBody(
                                     " 권합니다."
                                   ,textAlign: TextAlign.center
                                   ,style: TextStyle(
-                                    color: Colors.black87,
+                                    // color: Colors.black87,
                                     fontSize: 10.0,
                                   ),
                                 ),
