@@ -60,8 +60,9 @@ class _ThirdDetailState extends State<ThirdDetail> {
           // title: Text('진통 기록'),
           scrolledUnderElevation:0.0,
           elevation: 0,
-          backgroundColor : color1,
+          // backgroundColor : color1,
           foregroundColor : Theme.of(context).colorScheme.onBackground,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           // automaticallyImplyLeading: false,
         )
         ,
@@ -70,16 +71,17 @@ class _ThirdDetailState extends State<ThirdDetail> {
             child: Column(
               children: [
                 Container(
-                  color: color1,
+                  color: Theme.of(context).colorScheme.primary,
                   width: double.infinity,
                   height: 185.0,
                   alignment: Alignment.center,
                   child: Container(
                     width: 360.0,
                     height: 160.0,
-                    decoration: BoxDecoration(color: Colors.white70,
+                    decoration: BoxDecoration(color:
+                    Theme.of(context).colorScheme.onPrimaryContainer,
                         border: Border.all(
-                            color: Colors.white70,
+                            color: Theme.of(context).colorScheme.onPrimaryContainer,
                             width: 0.0,
                             style: BorderStyle.solid
                         ),
@@ -206,25 +208,35 @@ class _ThirdDetailState extends State<ThirdDetail> {
                     ),
                   ),
                 ),
-
+                Divider(
+                  height: 1.0,
+                  // color: Colors.white,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                  thickness:1.0,
+                ),
                 Expanded(child:
                   ListView.separated(
                       separatorBuilder: (BuildContext context, int index)
                       => Divider(
-                        color: Colors.grey[400],
-                        indent: 20,
-                        endIndent: 20,
+                        color: Theme.of(context).colorScheme.secondary,
+                        indent: 10,
+                        endIndent: 10,
                         height: 0.0,),
-                      itemCount: widget.hurtRecodeAll.length,
+                      itemCount: widget.hurtRecodeAll.length + 1,
                       itemBuilder: (context, index){
-                        return
-                          logFormat_1_basic(
-                            widget.hurtRecodeAll.length,
-                            index,
-                            widget.hurtRecodeAll[index][0],
-                            widget.hurtRecodeAll[index][1],
-                            30.0,
-                          );
+                        if (index == widget.hurtRecodeAll.length) {
+                          return SizedBox();
+                        } else {
+                          return
+                            logFormat_1_basic(
+                                widget.hurtRecodeAll.length,
+                                index,
+                                widget.hurtRecodeAll[index][0],
+                                widget.hurtRecodeAll[index][1],
+                                30.0,
+                                context
+                            );
+                        }
                       }
                   )
                 ),

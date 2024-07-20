@@ -9,11 +9,13 @@ Widget logFormat_1_basic(
     ,index
     ,contractionsTimeInfo
     ,restTimeInfo
-    ,paddingNum){
+    ,paddingNum
+    ,context
+    ){
   return
     Container(
       height: 100.0,
-      color: Colors.white70,
+      color: Theme.of(context).colorScheme.onPrimaryContainer,
       child:Stack(
         children: [
           Row(
@@ -24,7 +26,7 @@ Widget logFormat_1_basic(
                 alignment: Alignment.center,
                 child: CircleAvatar(
                   radius: 15,
-                  backgroundColor: color1,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   child: Text(
                       (all_length-index).toString(),
                       style: const TextStyle(
@@ -60,9 +62,9 @@ Widget logFormat_1_basic(
                 alignment: Alignment.center,
                 child: AutoSizeText(
                   secToText(contractionsTimeInfo + restTimeInfo),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 26
-                    ,color: color5,
+                    ,color: Theme.of(context).colorScheme.secondaryContainer,
                   ),
                   maxLines: 1,
                 ),

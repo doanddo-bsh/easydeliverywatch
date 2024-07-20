@@ -9,3 +9,5 @@ const Color color6 = Color(0xFFFFc98b); // 1=>6안씀...
 const Color color7 = Color(0xFFFFb284); // 2=> 7 안씀
 const Color color8 = Color(0xFFE3E0E0); // 다 른 날을 표시하는 동그라미 색깔 4=>8
 const Color color9 = Color(0xFFEEEDED); //아래칸 색깔 =>7=>9
+const Color color10 = Colors.white70 ; // basic listtile container color
+Color color11 = Colors.grey[400] ?? Colors.grey; // basic divider

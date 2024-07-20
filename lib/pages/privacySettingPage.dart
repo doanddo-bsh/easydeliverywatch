@@ -5,6 +5,7 @@ import 'package:easydeliverywatch/regulation/initialization_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../module/darkThemeProvider.dart'; // ThemeProvider 파일 import
+import '../module/color_def.dart';
 
 class SettingPage extends StatefulWidget {
   SettingPage({super.key});
@@ -30,6 +31,11 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
 
+    final ThemeData theme = Theme.of(context);
+    final Color dividerColor = theme.brightness == Brightness.dark
+        ? color4 // 다크 모드에서의 화살표 색상
+        : color1; // 라이트 모드에서의 화살표 색상
+
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
@@ -51,19 +57,28 @@ class _SettingPageState extends State<SettingPage> {
                   child: Text(
                     '설정',
                     style: TextStyle(
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).colorScheme.tertiaryContainer,
+                      // color:color3,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-                const Divider(
+                Divider(
                   indent: 12.0,
                   endIndent: 12.0,
+                  color: dividerColor,
                 ),
+                // Divider(
+                //   height: 1.0,
+                //   // color: Colors.white,
+                //   color: Theme.of(context).colorScheme.onSecondary,
+                //   thickness:1.0,
+                // ),
                 ListTile(
-                  title: const Text('다크모드'),
+                  // tileColor: Theme.of(context).primaryColor,
+                  title: const Text('다크 모드'),
                   onTap: () {
-                    print('다크모드 되나?');
+                    // print('다크모드 되나?');
                     themeProvider.toggleThemeMode();
 
                     // widget.toggleThemeMode;

@@ -45,24 +45,63 @@ class _MyAppState extends State<MyApp> {
       builder: (context, child) => MaterialApp(
         title: 'easy Delivery Watch',
         debugShowCheckedModeBanner: false,
+        // theme: ThemeData(
+        //   // primarySwatch:color1,
+        //   colorScheme: ColorScheme.fromSeed(
+        //       seedColor: color1,
+        //       brightness: Brightness.light,
+        //       // primaryContainer:color1,
+        //       primary: Colors.amber,
+        //
+        //   ),
+        //   useMaterial3: true,
+        //   // brightness: Brightness.light),
+        // ),
+        // darkTheme: ThemeData(
+        //   colorScheme: ColorScheme.fromSeed(
+        //       seedColor: color1,
+        //       brightness: Brightness.dark,
+        //       // primaryContainer:Colors.white,
+        //       // primary:Colors.red,
+        //   ),
+        //   useMaterial3: true,
+        //   // brightness: Brightness.dark),
+        // ),
         theme: ThemeData(
-          // primarySwatch:color1,
           colorScheme: ColorScheme.fromSeed(
-              seedColor: color1,
-              brightness: Brightness.light,
-              primaryContainer:color1
+            seedColor: color1,
+            brightness: Brightness.light,
+            primary: color1,
+            onPrimary: color2,
+            primaryContainer:color3,
+            onPrimaryContainer: color10,
+            secondary:color11,
+            onSecondary:Colors.white,
+            secondaryContainer:color5,
+            tertiary : Colors.black,
+            onTertiary : color2,
+            tertiaryContainer : color3,
+            onTertiaryContainer:color8
           ),
           useMaterial3: true,
-          // brightness: Brightness.light),
         ),
         darkTheme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-              seedColor: color1,
-              brightness: Brightness.dark,
-              primaryContainer:Colors.black54
+            seedColor: const Color(0xFFF6E6E4),
+            brightness: Brightness.dark,
+            primary: Color(0xFF201A19),
+            onPrimary:Colors.grey,
+            primaryContainer: Colors.white,
+            onPrimaryContainer: Color(0xFF201A19),
+            secondary:color4,
+            onSecondary: color4,
+            secondaryContainer:Colors.grey,
+            tertiary : Colors.white,
+            onTertiary : Colors.grey[300],
+            tertiaryContainer : Colors.grey,
+            onTertiaryContainer:Colors.grey[700],
           ),
           useMaterial3: true,
-          // brightness: Brightness.dark),
         ),
         themeMode: themeProvider.themeMode,
         // 시스템 설정에 따라 자동 전환

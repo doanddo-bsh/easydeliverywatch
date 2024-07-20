@@ -248,9 +248,9 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                   MaterialPageRoute(
                       builder: (context) => SecondCalendar(events: events)));
             },
-            child: const Icon(
+            child: Icon(
               Icons.calendar_month_rounded,
-              color: Colors.black,
+              color: Theme.of(context).colorScheme.tertiary,
             ),
           ),
           actions: [
@@ -293,14 +293,14 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                       MaterialPageRoute(
                           builder: (context) => SettingPage()));
                 },
-                icon: const Icon(
+                icon: Icon(
                   Icons.settings_outlined,
-                  color: Colors.black,
+                  color: Theme.of(context).colorScheme.tertiary,
                 )),
             IconButton(
-              icon: const Icon(
+              icon: Icon(
                 Icons.refresh,
-                color: Colors.black,
+                color: Theme.of(context).colorScheme.tertiary,
               ),
               onPressed: () {
                 // show dialog no log
@@ -320,7 +320,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                       ),
                       content: const Text('진통 기록을 모두 삭제하시겠습니까?',
                           style: TextStyle(
-                              fontSize: 13.5, color: Color(0xFF7C7A7A))),
+                              fontSize: 13.5, color: color4)),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () {
@@ -356,7 +356,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                       ),
                       content: const Text('진통 기록을 모두 삭제하시겠습니까?',
                           style: TextStyle(
-                              fontSize: 13.5, color: Color(0xFF7C7A7A))),
+                              fontSize: 13.5, color: color4)),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () {
@@ -381,7 +381,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
               },
             ),
           ],
-          backgroundColor: color1,
+          backgroundColor: Theme.of(context).colorScheme.primary,
         ),
         body: (logFormat == 'basic')
             ?
@@ -421,7 +421,9 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(50)),
                   ),
-                  backgroundColor: timer.hurt ? color2 : color3,
+                  backgroundColor: timer.hurt ?
+                  Theme.of(context).colorScheme.onTertiary :
+                  Theme.of(context).colorScheme.tertiaryContainer,
                   hoverColor: Colors.orange,
                   hoverElevation: 50,
                   onPressed: () {
@@ -601,7 +603,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                           }
                         });
                   },
-                  backgroundColor: color1,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   foregroundColor: color4,
                   mini: true,
                   tooltip: '초산 경산 여부',

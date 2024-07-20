@@ -127,14 +127,16 @@ class _SecondCalendarState extends State<SecondCalendar> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: const Icon(
+            child: Icon(
               Icons.home_rounded, // add custom icons also
+              color: Theme.of(context).colorScheme.tertiary,
             ),
           ),
           // title: Text('second page'),
           elevation: 0,
-          backgroundColor: color1,
-          foregroundColor: Theme.of(context).colorScheme.onBackground,
+          // backgroundColor: color1,
+          // foregroundColor: Theme.of(context).colorScheme.onBackground,
+          backgroundColor: Theme.of(context).colorScheme.primary,
         ),
         body: SafeArea(
             child: Column(
@@ -146,17 +148,29 @@ class _SecondCalendarState extends State<SecondCalendar> {
               // 추가
               focusedDay: _focusedDay,
               calendarFormat: _calendarFormat,
-              headerStyle: const HeaderStyle(formatButtonVisible: false),
+              headerStyle: HeaderStyle(
+                  formatButtonVisible: false,
+                  leftChevronIcon: Icon(
+                    Icons.chevron_left,
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
+                  rightChevronIcon: Icon(
+                    Icons.chevron_right,
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
+              ),
               // 2weeks invisable
               calendarStyle: CalendarStyle(
                 markerSize: 5.5,
                 markersMaxCount: 3,
                 selectedDecoration: BoxDecoration(
-                  color: isSameDay(_selectedDay, _todayDay) ? color3 : color8,
+                  color: isSameDay(_selectedDay, _todayDay) ?
+                  Theme.of(context).colorScheme.onPrimary
+                  : Theme.of(context).colorScheme.onTertiaryContainer,
                   shape: BoxShape.circle,
                 ),
-                todayDecoration: const BoxDecoration(
-                  color: color3,
+                todayDecoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.onPrimary,
                   shape: BoxShape.circle,
                 ),
               ),
@@ -246,7 +260,7 @@ class _SecondCalendarState extends State<SecondCalendar> {
                             vertical: 5.0,
                           ),
                           decoration: BoxDecoration(
-                            color: color9,
+                            color: Theme.of(context).colorScheme.onPrimaryContainer,
                             // border: Border.all(),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
