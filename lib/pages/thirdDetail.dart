@@ -55,6 +55,8 @@ class _ThirdDetailState extends State<ThirdDetail> {
     // print(widget.hurtRecodeAll[0][0]+widget.hurtRecodeAll[0][1]);
     // print(widget.hurtRecodeAll);
 
+    Color color1Final = getColorFinal(context, color1, color1Dark);
+
     return Scaffold(
         appBar: AppBar(
           // title: Text('진통 기록'),

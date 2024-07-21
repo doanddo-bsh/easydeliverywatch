@@ -260,7 +260,8 @@ class _SecondCalendarState extends State<SecondCalendar> {
                             vertical: 5.0,
                           ),
                           decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onPrimaryContainer,
+                            // color: Theme.of(context).colorScheme.onPrimaryContainer,
+                            color: color9,
                             // border: Border.all(),
                             borderRadius: BorderRadius.circular(10.0),
                           ),

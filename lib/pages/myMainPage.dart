@@ -230,6 +230,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
     print('lapTime $lapTime');
     print('lapTimeType2 $lapTimeType2');
 
+    Color color1Final = getColorFinal(context, color1, color1Dark);
+
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -381,7 +383,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
               },
             ),
           ],
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: color1Final,
         ),
         body: (logFormat == 'basic')
             ?
@@ -603,7 +605,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                           }
                         });
                   },
-                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  backgroundColor: color1Final,
                   foregroundColor: color4,
                   mini: true,
                   tooltip: '초산 경산 여부',
