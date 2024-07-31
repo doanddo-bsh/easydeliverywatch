@@ -21,7 +21,7 @@ Widget basicMyMainPageBody(
           children: [
             Container(
               height: 30,
-              decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary),
+              decoration: BoxDecoration(color: getColorFinal(context, color1, color1Dark)),
               width: double.infinity,
               child: Center(
                   child:Text(timer.hurt? '진통중' : '휴식중'
@@ -36,7 +36,7 @@ Widget basicMyMainPageBody(
             ),
             Container(
               height: 65,
-              decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary),
+              decoration: BoxDecoration(color: getColorFinal(context, color1, color1Dark)),
               width: double.infinity,
               child: Center(
                   child:AutoSizeText(
@@ -54,10 +54,10 @@ Widget basicMyMainPageBody(
             ),
             Container(
               height: 15,
-              color: Theme.of(context).colorScheme.primary,
+              color: getColorFinal(context, color1, color1Dark),
             ),
             Container(
-              decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary),
+              decoration: BoxDecoration(color: getColorFinal(context, color1, color1Dark)),
               width: double.infinity,
               child: Center(
                   child:Text(hurtAvgFnc(lapTime)
@@ -69,10 +69,10 @@ Widget basicMyMainPageBody(
             ),
             Container(
               height: 20,
-              color: Theme.of(context).colorScheme.primary,
+              color: getColorFinal(context, color1, color1Dark),
             ),
             Container(
-                decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary),
+                decoration: BoxDecoration(color: getColorFinal(context, color1, color1Dark)),
                 width: double.infinity,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -113,7 +113,7 @@ Widget basicMyMainPageBody(
             ),
             Container(
               height: 18,
-              color: Theme.of(context).colorScheme.primary,
+              color: getColorFinal(context, color1, color1Dark),
             ),
             Divider(
               height: 1.0,
@@ -250,10 +250,10 @@ Widget basicMyMainPageBody(
             ),
             Container(
               // color: Theme.of(context).colorScheme.primary,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary, // 원하는 배경 색상 지정
-                border: Border.all(color: Colors.black), // 테두리 추가 (선택 사항)
-              ),
+              // decoration: BoxDecoration(
+              //   color: getColorFinal(context, color1, color1Dark), // 원하는 배경 색상 지정
+              //   // border: Border.all(color: Colors.black), // 테두리 추가 (선택 사항)
+              // ),
               alignment: Alignment.center,
               width: _banner!.size.width.toDouble(),
               height: _banner!.size.height.toDouble(),
