@@ -19,10 +19,27 @@ const Color color8 = Color(0xFFE3E0E0);
 const Color color9 = Color(0xFFEEEDED);
 const Color color10 = Colors.white70 ;
 Color color11 = Colors.grey[400] ?? Colors.grey;
+const Color color12 = Colors.white ;
+const Color color13 = Colors.black ;
+const Color color14 = color2 ;
+const Color color15 = color3 ;
+const Color color16 = Color(0xffffffff);
+
 
 const Color color1Dark = Color(0xFF201A19);
+const Color color2Dark = Colors.grey;
+const Color color3Dark = Colors.white;
+const Color color5Dark = Colors.grey;
+Color color8Dark = Colors.grey[700] ?? Colors.grey ;
+const Color color9Dark = Colors.black54;
 
-
+const Color color10Dark = Color(0xFF201A19);
+const Color color11Dark = color4;
+const Color color12Dark = color4;
+const Color color13Dark = Colors.white ;
+Color color14Dark = Colors.grey[300] ?? Colors.grey ;
+const Color color15Dark = Colors.grey;
+Color color16Dark = Colors.grey[300] ?? Colors.grey ;
 
 
 
@@ -30,7 +47,7 @@ Color getColorFinal(context, colorLight, colorBlack){
   final ThemeData theme = Theme.of(context);
 
   Color colorFianl =  theme.brightness == Brightness.dark
-      ? colorBlack // 다크 모드에서의 화살표 색상
-      : colorLight; // 라이트 모드에서의 화살표 색상
+      ? colorBlack // 다크 모드에서의 색상
+      : colorLight; // 라이트 모드에서의 색상
   return colorFianl;
 }

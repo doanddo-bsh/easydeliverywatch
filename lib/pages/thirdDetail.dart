@@ -64,7 +64,7 @@ class _ThirdDetailState extends State<ThirdDetail> {
           elevation: 0,
           // backgroundColor : color1,
           foregroundColor : Theme.of(context).colorScheme.onBackground,
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: getColorFinal(context,color1,color1Dark),
           // automaticallyImplyLeading: false,
         )
         ,
@@ -73,7 +73,7 @@ class _ThirdDetailState extends State<ThirdDetail> {
             child: Column(
               children: [
                 Container(
-                  color: Theme.of(context).colorScheme.primary,
+                  color: getColorFinal(context,color1,color1Dark),
                   width: double.infinity,
                   height: 185.0,
                   alignment: Alignment.center,
@@ -81,9 +81,9 @@ class _ThirdDetailState extends State<ThirdDetail> {
                     width: 360.0,
                     height: 160.0,
                     decoration: BoxDecoration(color:
-                    Theme.of(context).colorScheme.onPrimaryContainer,
+                    getColorFinal(context,color10, color10Dark),
                         border: Border.all(
-                            color: Theme.of(context).colorScheme.onPrimaryContainer,
+                            color: getColorFinal(context,color10, color10Dark),
                             width: 0.0,
                             style: BorderStyle.solid
                         ),
@@ -213,14 +213,14 @@ class _ThirdDetailState extends State<ThirdDetail> {
                 Divider(
                   height: 1.0,
                   // color: Colors.white,
-                  color: Theme.of(context).colorScheme.onSecondary,
+                  color: getColorFinal(context, color12, color12Dark),
                   thickness:1.0,
                 ),
                 Expanded(child:
                   ListView.separated(
                       separatorBuilder: (BuildContext context, int index)
                       => Divider(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: getColorFinal(context, color11, color11Dark),
                         indent: 10,
                         endIndent: 10,
                         height: 0.0,),

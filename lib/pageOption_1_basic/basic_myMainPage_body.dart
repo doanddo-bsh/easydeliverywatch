@@ -28,8 +28,8 @@ Widget basicMyMainPageBody(
                     ,style: TextStyle(
                       fontSize: 20,
                       color: timer.hurt?
-                      Theme.of(context).colorScheme.primaryContainer :
-                      Theme.of(context).colorScheme.onPrimary,
+                      getColorFinal(context,color3,color3Dark) :
+                      getColorFinal(context,color2,color2Dark),
                     ),
                   )
               ),
@@ -45,8 +45,8 @@ Widget basicMyMainPageBody(
                     ,style: TextStyle(
                     fontSize: 55,
                     color: timer.hurt?
-                    Theme.of(context).colorScheme.primaryContainer :
-                    Theme.of(context).colorScheme.onPrimary,
+                    getColorFinal(context,color3,color3Dark) :
+                    getColorFinal(context,color2,color2Dark),
                   ),
                     maxLines: 1,
                   )
@@ -118,12 +118,12 @@ Widget basicMyMainPageBody(
             Divider(
               height: 1.0,
               // color: Colors.white,
-              color: Theme.of(context).colorScheme.onSecondary,
+              color: getColorFinal(context, color12, color12Dark),
               thickness:1.0,
             ),
             Expanded(child:
               Container(
-                color: Theme.of(context).colorScheme.onPrimaryContainer,
+                color: getColorFinal(context,color10, color10Dark),
                 child: Scrollbar(
                   controller: _scrollController,
                   child: ListView.separated(
@@ -134,7 +134,7 @@ Widget basicMyMainPageBody(
                         return Container(
                           // height: 600.0,
                             decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.onPrimaryContainer
+                                color: getColorFinal(context,color10, color10Dark)
                             ),
                             child: Center(child:
                             Padding(
@@ -239,7 +239,7 @@ Widget basicMyMainPageBody(
                     },
                     separatorBuilder: (BuildContext context, int index)
                     => Divider(
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: getColorFinal(context, color11, color11Dark),
                       // color: Colors.white,
                       indent: 10,
                       endIndent: 10,

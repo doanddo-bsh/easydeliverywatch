@@ -15,7 +15,7 @@ Widget logFormat_1_basic(
   return
     Container(
       height: 100.0,
-      color: Theme.of(context).colorScheme.onPrimaryContainer,
+      color: getColorFinal(context,color10, color10Dark),
       child:Stack(
         children: [
           Row(
@@ -26,7 +26,7 @@ Widget logFormat_1_basic(
                 alignment: Alignment.center,
                 child: CircleAvatar(
                   radius: 15,
-                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  backgroundColor: getColorFinal(context,color1,color9Dark),
                   child: Text(
                       (all_length-index).toString(),
                       style: const TextStyle(
@@ -64,7 +64,7 @@ Widget logFormat_1_basic(
                   secToText(contractionsTimeInfo + restTimeInfo),
                   style: TextStyle(
                     fontSize: 26
-                    ,color: Theme.of(context).colorScheme.secondaryContainer,
+                    ,color: getColorFinal(context, color5, color5Dark),
                   ),
                   maxLines: 1,
                 ),

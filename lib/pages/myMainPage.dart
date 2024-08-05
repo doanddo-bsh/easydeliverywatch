@@ -26,10 +26,11 @@ class MyMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<TimerModule>(
-        // provider 활용을 위해 설정함
-        create: (BuildContext context) => TimerModule(),
-        child: MyMainPageBody());
+    return MyMainPageBody();
+      // ChangeNotifierProvider<TimerModule>(
+      //   // provider 활용을 위해 설정함
+      //   create: (BuildContext context) => TimerModule(),
+      //   child: MyMainPageBody());
   }
 }
 
@@ -252,7 +253,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
             },
             child: Icon(
               Icons.calendar_month_rounded,
-              color: Theme.of(context).colorScheme.tertiary,
+              color: getColorFinal(context, color13, color13Dark),
             ),
           ),
           actions: [
@@ -297,12 +298,12 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                 },
                 icon: Icon(
                   Icons.settings_outlined,
-                  color: Theme.of(context).colorScheme.tertiary,
+                  color: getColorFinal(context, color13, color13Dark),
                 )),
             IconButton(
               icon: Icon(
                 Icons.refresh,
-                color: Theme.of(context).colorScheme.tertiary,
+                color: getColorFinal(context, color13, color13Dark),
               ),
               onPressed: () {
                 // show dialog no log
@@ -424,8 +425,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                     borderRadius: BorderRadius.all(Radius.circular(50)),
                   ),
                   backgroundColor: timer.hurt ?
-                  Theme.of(context).colorScheme.onTertiary :
-                  Theme.of(context).colorScheme.tertiaryContainer,
+                  getColorFinal(context, color14, color14Dark) :
+                  getColorFinal(context, color15, color15Dark),
                   hoverColor: Colors.orange,
                   hoverElevation: 50,
                   onPressed: () {
@@ -461,8 +462,7 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                                     padding: EdgeInsets.all(8.0),
                                     child: Image(
                                         image: AssetImage(
-                                            'assets/appIcon/easydeliveryAppicon6'
-                                            '.png')),
+                                            'assets/appIcon/easydeliveryAppicon6_removed.png')),
                                   ),
                                 ),
                                 description: Container(
@@ -521,103 +521,103 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment(Alignment.bottomRight.x - 0.11,
-                  Alignment.bottomRight.y - 0.18),
-              child: FloatingActionButton(
-                  heroTag: "btn2",
-                  onPressed: () {
-                    showDialog<String>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          if (timer.isFirst) {
-                            return AlertDialog(
-                              surfaceTintColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              title: const Text(
-                                '초산으로 바꾸시겠습니까?',
-                                style: TextStyle(
-                                    fontSize: 17, color: Colors.black),
-                              ),
-                              content: const Text('초산은 5분 미만입니다',
-                                  style: TextStyle(
-                                      fontSize: 13.5,
-                                      color: Color(0xFF7C7A7A))),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context, 'Cancel');
-                                  },
-                                  style: TextButton.styleFrom(
-                                      foregroundColor: color4),
-                                  child: const Text('Cancel'),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    timer.firstOrNot();
-                                    Navigator.pop(context, 'OK');
-                                  },
-                                  style: TextButton.styleFrom(
-                                      foregroundColor: color4),
-                                  child: const Text('OK'),
-                                ),
-                              ],
-                            );
-                          } else {
-                            return AlertDialog(
-                              // backgroundColor:Colors.white,
-                              surfaceTintColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              title: const Text(
-                                '경산으로 바꾸시겠습니까?',
-                                style: TextStyle(
-                                    fontSize: 17, color: Colors.black),
-                              ),
-                              content: const Text(
-                                '경산은 10분 미만입니다',
-                                style: TextStyle(
-                                    fontSize: 13.5, color: Color(0xFF7C7A7A)),
-                              ),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context, 'Cancel');
-                                  },
-                                  style: TextButton.styleFrom(
-                                      foregroundColor: color4),
-                                  child: const Text('Cancel'),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    timer.firstOrNot();
-                                    Navigator.pop(context, 'OK');
-                                  },
-                                  style: TextButton.styleFrom(
-                                      foregroundColor: color4),
-                                  child: const Text('OK'),
-                                ),
-                              ],
-                            );
-                          }
-                        });
-                  },
-                  backgroundColor: color1Final,
-                  foregroundColor: color4,
-                  mini: true,
-                  tooltip: '초산 경산 여부',
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Text(
-                    timer.isFirst ? '경산' : '초산',
-                    style: const TextStyle(fontSize: 13),
-                  )),
-            )
+            // Align(
+            //   alignment: Alignment(Alignment.bottomRight.x - 0.11,
+            //       Alignment.bottomRight.y - 0.18),
+            //   child: FloatingActionButton(
+            //       heroTag: "btn2",
+            //       onPressed: () {
+            //         showDialog<String>(
+            //             context: context,
+            //             builder: (BuildContext context) {
+            //               if (timer.isFirst) {
+            //                 return AlertDialog(
+            //                   surfaceTintColor: Colors.white,
+            //                   shape: RoundedRectangleBorder(
+            //                     borderRadius: BorderRadius.circular(10),
+            //                   ),
+            //                   title: const Text(
+            //                     '초산으로 바꾸시겠습니까?',
+            //                     style: TextStyle(
+            //                         fontSize: 17, color: Colors.black),
+            //                   ),
+            //                   content: const Text('초산은 5분 미만입니다',
+            //                       style: TextStyle(
+            //                           fontSize: 13.5,
+            //                           color: Color(0xFF7C7A7A))),
+            //                   actions: <Widget>[
+            //                     TextButton(
+            //                       onPressed: () {
+            //                         Navigator.pop(context, 'Cancel');
+            //                       },
+            //                       style: TextButton.styleFrom(
+            //                           foregroundColor: color4),
+            //                       child: const Text('Cancel'),
+            //                     ),
+            //                     TextButton(
+            //                       onPressed: () {
+            //                         timer.firstOrNot();
+            //                         Navigator.pop(context, 'OK');
+            //                       },
+            //                       style: TextButton.styleFrom(
+            //                           foregroundColor: color4),
+            //                       child: const Text('OK'),
+            //                     ),
+            //                   ],
+            //                 );
+            //               } else {
+            //                 return AlertDialog(
+            //                   // backgroundColor:Colors.white,
+            //                   surfaceTintColor: Colors.white,
+            //                   shape: RoundedRectangleBorder(
+            //                     borderRadius: BorderRadius.circular(10),
+            //                   ),
+            //                   title: const Text(
+            //                     '경산으로 바꾸시겠습니까?',
+            //                     style: TextStyle(
+            //                         fontSize: 17, color: Colors.black),
+            //                   ),
+            //                   content: const Text(
+            //                     '경산은 10분 미만입니다',
+            //                     style: TextStyle(
+            //                         fontSize: 13.5, color: Color(0xFF7C7A7A)),
+            //                   ),
+            //                   actions: <Widget>[
+            //                     TextButton(
+            //                       onPressed: () {
+            //                         Navigator.pop(context, 'Cancel');
+            //                       },
+            //                       style: TextButton.styleFrom(
+            //                           foregroundColor: color4),
+            //                       child: const Text('Cancel'),
+            //                     ),
+            //                     TextButton(
+            //                       onPressed: () {
+            //                         timer.firstOrNot();
+            //                         Navigator.pop(context, 'OK');
+            //                       },
+            //                       style: TextButton.styleFrom(
+            //                           foregroundColor: color4),
+            //                       child: const Text('OK'),
+            //                     ),
+            //                   ],
+            //                 );
+            //               }
+            //             });
+            //       },
+            //       backgroundColor: color1Final,
+            //       foregroundColor: color4,
+            //       mini: true,
+            //       tooltip: '초산 경산 여부',
+            //       elevation: 0,
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(30),
+            //       ),
+            //       child: Text(
+            //         timer.isFirst ? '경산' : '초산',
+            //         style: const TextStyle(fontSize: 13),
+            //       )),
+            // )
           ],
         ),
       ),

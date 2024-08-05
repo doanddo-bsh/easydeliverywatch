@@ -129,14 +129,14 @@ class _SecondCalendarState extends State<SecondCalendar> {
             },
             child: Icon(
               Icons.home_rounded, // add custom icons also
-              color: Theme.of(context).colorScheme.tertiary,
+              color: getColorFinal(context, color13, color13Dark),
             ),
           ),
           // title: Text('second page'),
           elevation: 0,
           // backgroundColor: color1,
           // foregroundColor: Theme.of(context).colorScheme.onBackground,
-          backgroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: getColorFinal(context,color1,color1Dark),
         ),
         body: SafeArea(
             child: Column(
@@ -152,11 +152,11 @@ class _SecondCalendarState extends State<SecondCalendar> {
                   formatButtonVisible: false,
                   leftChevronIcon: Icon(
                     Icons.chevron_left,
-                    color: Theme.of(context).colorScheme.tertiary,
+                    color: getColorFinal(context, color13, color13Dark),
                   ),
                   rightChevronIcon: Icon(
                     Icons.chevron_right,
-                    color: Theme.of(context).colorScheme.tertiary,
+                    color: getColorFinal(context, color13, color13Dark),
                   ),
               ),
               // 2weeks invisable
@@ -165,12 +165,16 @@ class _SecondCalendarState extends State<SecondCalendar> {
                 markersMaxCount: 3,
                 selectedDecoration: BoxDecoration(
                   color: isSameDay(_selectedDay, _todayDay) ?
-                  Theme.of(context).colorScheme.onPrimary
-                  : Theme.of(context).colorScheme.onTertiaryContainer,
+                  getColorFinal(context,color2,color2Dark)
+                  : getColorFinal(context, color8, color8Dark),
                   shape: BoxShape.circle,
                 ),
                 todayDecoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  color: getColorFinal(context,color2,color2Dark),
+                  shape: BoxShape.circle,
+                ),
+                markerDecoration: BoxDecoration(
+                  color: getColorFinal(context,color13,color13Dark),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -261,7 +265,7 @@ class _SecondCalendarState extends State<SecondCalendar> {
                           ),
                           decoration: BoxDecoration(
                             // color: Theme.of(context).colorScheme.onPrimaryContainer,
-                            color: color9,
+                            color: getColorFinal(context, color9, color9Dark),
                             // border: Border.all(),
                             borderRadius: BorderRadius.circular(10.0),
                           ),

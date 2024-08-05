@@ -3,9 +3,11 @@
 import 'package:async_preferences/async_preferences.dart';
 import 'package:easydeliverywatch/regulation/initialization_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../module/darkThemeProvider.dart'; // ThemeProvider 파일 import
 import '../module/color_def.dart';
+import '../module/timerModul.dart';
 
 class SettingPage extends StatefulWidget {
   SettingPage({super.key});
@@ -31,16 +33,12 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
 
-    final ThemeData theme = Theme.of(context);
-    final Color dividerColor = theme.brightness == Brightness.dark
-        ? color4 // 다크 모드에서의 화살표 색상
-        : color1; // 라이트 모드에서의 화살표 색상
-
+    final TimerModule timer = Provider.of<TimerModule>(context);
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('설정'),
+        // title: const Text('설정'),
       ),
       body: FutureBuilder<bool>(
           future: _future,
@@ -57,7 +55,8 @@ class _SettingPageState extends State<SettingPage> {
                   child: Text(
                     '설정',
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.tertiaryContainer,
+                      color: getColorFinal(context, color15, color15Dark),
+                      fontSize: 20.sp,
                       // color:color3,
                       fontWeight: FontWeight.bold,
                     ),
@@ -66,7 +65,7 @@ class _SettingPageState extends State<SettingPage> {
                 Divider(
                   indent: 12.0,
                   endIndent: 12.0,
-                  color: dividerColor,
+                  color: getColorFinal(context, color1, color4),
                 ),
                 // Divider(
                 //   height: 1.0,
@@ -89,13 +88,91 @@ class _SettingPageState extends State<SettingPage> {
                 ListTile(
                   title: const Text('진통 주기 설정'),
                   onTap: () {
-                    final scaffoldMessenger = ScaffoldMessenger.of(context);
 
-                    scaffoldMessenger.showSnackBar(
-                      SnackBar(
-                        content: Text('진통 주기 설정하는 팝업'),
-                      ),
-                    );
+                    showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          if (timer.isFirst) {
+                            return AlertDialog(
+                              surfaceTintColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              title: const Text(
+                                '초산으로 바꾸시겠습니까?',
+                                style: TextStyle(
+                                    fontSize: 17, color: Colors.black),
+                              ),
+                              content: const Text('초산은 5분 미만입니다',
+                                  style: TextStyle(
+                                      fontSize: 13.5,
+                                      color: Color(0xFF7C7A7A))),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context, 'Cancel');
+                                  },
+                                  style: TextButton.styleFrom(
+                                      foregroundColor: color4),
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    timer.firstOrNot();
+                                    Navigator.pop(context, 'OK');
+                                  },
+                                  style: TextButton.styleFrom(
+                                      foregroundColor: color4),
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            );
+                          } else {
+                            return AlertDialog(
+                              // backgroundColor:Colors.white,
+                              surfaceTintColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              title: const Text(
+                                '경산으로 바꾸시겠습니까?',
+                                style: TextStyle(
+                                    fontSize: 17, color: Colors.black),
+                              ),
+                              content: const Text(
+                                '경산은 10분 미만입니다',
+                                style: TextStyle(
+                                    fontSize: 13.5, color: Color(0xFF7C7A7A)),
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context, 'Cancel');
+                                  },
+                                  style: TextButton.styleFrom(
+                                      foregroundColor: color4),
+                                  child: const Text('Cancel'),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    timer.firstOrNot();
+                                    Navigator.pop(context, 'OK');
+                                  },
+                                  style: TextButton.styleFrom(
+                                      foregroundColor: color4),
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            );
+                          }
+                        });
+                    // final scaffoldMessenger = ScaffoldMessenger.of(context);
+                    //
+                    // scaffoldMessenger.showSnackBar(
+                    //   SnackBar(
+                    //     content: Text('진통 주기 설정하는 팝업'),
+                    //   ),
+                    // );
                   },
                 ),
                 ListTile(

@@ -7,6 +7,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import '../module/color_def.dart';
 import 'package:provider/provider.dart';
 import 'module/darkThemeProvider.dart'; // ThemeProvider 파일 import
+import '../module/timerModul.dart';
 
 Future<void> main() async {
   await initializeDateFormatting(); // 달력 한국어 활용 목적
@@ -19,8 +20,11 @@ Future<void> main() async {
   //     RequestConfiguration(testDeviceIds: ['09b182c1097886c9f957eae5ec353c6b'])
   // );
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => TimerModule()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
       child: MyApp(),
     ),
   );
@@ -71,17 +75,6 @@ class _MyAppState extends State<MyApp> {
           colorScheme: ColorScheme.fromSeed(
             seedColor: color1,
             brightness: Brightness.light,
-            primary: color1,
-            onPrimary: color2,
-            primaryContainer:color3,
-            onPrimaryContainer: color10,
-            secondary:color11,
-            onSecondary:Colors.white,
-            secondaryContainer:color5,
-            tertiary : Colors.black,
-            onTertiary : color2,
-            tertiaryContainer : color3,
-            onTertiaryContainer:color8
           ),
           useMaterial3: true,
         ),
@@ -89,17 +82,6 @@ class _MyAppState extends State<MyApp> {
           colorScheme: ColorScheme.fromSeed(
             seedColor: const Color(0xFFF6E6E4),
             brightness: Brightness.dark,
-            primary: Color(0xFF201A19),
-            onPrimary:Colors.grey,
-            primaryContainer: Colors.white,
-            onPrimaryContainer: Color(0xFF201A19),
-            secondary:color4,
-            onSecondary: color4,
-            secondaryContainer:Colors.grey,
-            tertiary : Colors.white,
-            onTertiary : Colors.grey[300],
-            tertiaryContainer : Colors.grey,
-            onTertiaryContainer:Colors.grey[700],
           ),
           useMaterial3: true,
         ),

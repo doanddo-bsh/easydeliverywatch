@@ -1,3 +1,4 @@
+import 'package:easydeliverywatch/module/color_def.dart';
 import 'package:flutter/material.dart';
 
 class CustomAlertDialog extends StatefulWidget {
@@ -18,7 +19,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
   Widget build(BuildContext context) {
     return Dialog(
         elevation: 0,
-        backgroundColor: const Color(0xffffffff),
+        // backgroundColor: getColorFinal(context, color16, color16Dark),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
         ),
