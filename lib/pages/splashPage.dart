@@ -37,7 +37,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: color1,
+      backgroundColor: getColorFinal(context, color1,
+          color1Dark),
       body: Container(
         //height : MediaQuery.of(context).size.height,
         //color: kPrimaryColor,
@@ -54,8 +55,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 )
             ),
             SizedBox(height: 30.h),
-            const SpinKitPumpingHeart(
-              color: color2,
+            SpinKitPumpingHeart(
+              color: getColorFinal(context, color2,
+                  color2Dark),
               size: 60,
             ),
             const Expanded(child: SizedBox()),

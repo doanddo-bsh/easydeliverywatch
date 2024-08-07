@@ -315,22 +315,28 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      title: const Text(
+                      title: Text(
                         '진통 기록 초기화',
                         style: TextStyle(
                           fontSize: 17,
+                          color: getColorFinal(context, color13, color13Dark),
                         ),
                       ),
-                      content: const Text('진통 기록을 모두 삭제하시겠습니까?',
+                      content: Text('진통 기록을 모두 삭제하시겠습니까?',
                           style: TextStyle(
-                              fontSize: 13.5, color: color4)),
+                              fontSize: 13.5
+                              , color: getColorFinal(context, color4,
+                              color4Dark),
+                          )
+                      ),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context, 'Cancel');
                           },
-                          style: TextButton.styleFrom(foregroundColor: color4),
-                          child: const Text('Cancel'),
+                          style: TextButton.styleFrom(foregroundColor: getColorFinal(context, color4,
+                              color4Dark)),
+                          child: Text('Cancel'),
                         ),
                         TextButton(
                           onPressed: () {
@@ -338,7 +344,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                             timer.check_y(0);
                             Navigator.pop(context, 'OK');
                           },
-                          style: TextButton.styleFrom(foregroundColor: color4),
+                          style: TextButton.styleFrom(foregroundColor: getColorFinal(context, color4,
+                              color4Dark)),
                           child: const Text('OK'),
                         ),
                       ],
@@ -353,19 +360,23 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      title: const Text(
+                      title: Text(
                         '진통 기록 초기화',
-                        style: TextStyle(fontSize: 17),
+                        style: TextStyle(fontSize: 17
+                            ,color: getColorFinal(context, color13, color13Dark)
+                        ),
                       ),
-                      content: const Text('진통 기록을 모두 삭제하시겠습니까?',
+                      content: Text('진통 기록을 모두 삭제하시겠습니까?',
                           style: TextStyle(
-                              fontSize: 13.5, color: color4)),
+                              fontSize: 13.5, color: getColorFinal(context,
+                              color4, color4Dark))),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context, 'Cancel');
                           },
-                          style: TextButton.styleFrom(foregroundColor: color4),
+                          style: TextButton.styleFrom(foregroundColor: getColorFinal(context,
+                              color4, color4Dark)),
                           child: const Text('Cancel'),
                         ),
                         TextButton(
@@ -374,7 +385,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                             timer.check_y(0);
                             Navigator.pop(context, 'OK');
                           },
-                          style: TextButton.styleFrom(foregroundColor: color4),
+                          style: TextButton.styleFrom(foregroundColor: getColorFinal(context,
+                              color4, color4Dark)),
                           child: const Text('OK'),
                         ),
                       ],
@@ -418,15 +430,18 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
                   heroTag: "btn1",
                   label: Text(
                     timer.hurt ? '진통 멈춤' : '진통 시작',
-                    style: const TextStyle(fontSize: 23, color: color5),
+                    style: TextStyle(
+                        fontSize: 23, color: getColorFinal(context, color5,
+                        Colors.white)
+                    ),
                   ),
                   elevation: 0,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(50)),
                   ),
                   backgroundColor: timer.hurt ?
-                  getColorFinal(context, color14, color14Dark) :
-                  getColorFinal(context, color15, color15Dark),
+                  getColorFinal(context, color14, Color(0xFF504646)) :
+                  getColorFinal(context, color15, Color(0xFF362F2F)),
                   hoverColor: Colors.orange,
                   hoverElevation: 50,
                   onPressed: () {

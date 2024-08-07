@@ -29,6 +29,7 @@ const Color color16 = Color(0xffffffff);
 const Color color1Dark = Color(0xFF201A19);
 const Color color2Dark = Colors.grey;
 const Color color3Dark = Colors.white;
+const Color color4Dark = Colors.white;
 const Color color5Dark = Colors.grey;
 Color color8Dark = Colors.grey[700] ?? Colors.grey ;
 const Color color9Dark = Colors.black54;

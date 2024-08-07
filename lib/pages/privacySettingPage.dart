@@ -76,14 +76,24 @@ class _SettingPageState extends State<SettingPage> {
                 ListTile(
                   // tileColor: Theme.of(context).primaryColor,
                   title: const Text('다크 모드'),
+                  // trailing: Switch(
+                  //   value: themeProvider.themeMode == ThemeMode.dark,
+                  //   onChanged: (value) {
+                  //     themeProvider.toggleTheme(value);
+                  //   },
+                  // ),
                   onTap: () {
-                    // print('다크모드 되나?');
-                    themeProvider.toggleThemeMode();
-
-                    // widget.toggleThemeMode;
-                    // print(toggleThemeMode);
-
+                    bool isDarkMode = themeProvider.themeMode == ThemeMode.dark;
+                    themeProvider.toggleTheme(!isDarkMode);
                   },
+                  // onTap: () {
+                  //   // print('다크모드 되나?');
+                  //   themeProvider.toggleThemeMode();
+                  //
+                  //   // widget.toggleThemeMode;
+                  //   // print(toggleThemeMode);
+                  //
+                  // },
                 ),
                 ListTile(
                   title: const Text('진통 주기 설정'),
@@ -98,22 +108,26 @@ class _SettingPageState extends State<SettingPage> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              title: const Text(
+                              title: Text(
                                 '초산으로 바꾸시겠습니까?',
                                 style: TextStyle(
-                                    fontSize: 17, color: Colors.black),
+                                    fontSize: 17,
+                                    color:getColorFinal(context, color13, color13Dark)
+                                ),
                               ),
-                              content: const Text('초산은 5분 미만입니다',
+                              content: Text('초산은 5분 미만입니다',
                                   style: TextStyle(
                                       fontSize: 13.5,
-                                      color: Color(0xFF7C7A7A))),
+                                      color: getColorFinal(context, color4,
+                                          color4Dark))),
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
                                     Navigator.pop(context, 'Cancel');
                                   },
                                   style: TextButton.styleFrom(
-                                      foregroundColor: color4),
+                                      foregroundColor: getColorFinal(context,
+                                          color4, color4Dark)),
                                   child: const Text('Cancel'),
                                 ),
                                 TextButton(
@@ -122,7 +136,8 @@ class _SettingPageState extends State<SettingPage> {
                                     Navigator.pop(context, 'OK');
                                   },
                                   style: TextButton.styleFrom(
-                                      foregroundColor: color4),
+                                      foregroundColor: getColorFinal(context,
+                                          color4, color4Dark)),
                                   child: const Text('OK'),
                                 ),
                               ],
@@ -134,15 +149,17 @@ class _SettingPageState extends State<SettingPage> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              title: const Text(
+                              title: Text(
                                 '경산으로 바꾸시겠습니까?',
                                 style: TextStyle(
-                                    fontSize: 17, color: Colors.black),
+                                    fontSize: 17, color:
+                                getColorFinal(context, color13, color13Dark)),
                               ),
-                              content: const Text(
+                              content: Text(
                                 '경산은 10분 미만입니다',
                                 style: TextStyle(
-                                    fontSize: 13.5, color: Color(0xFF7C7A7A)),
+                                    fontSize: 13.5, color: getColorFinal
+                                  (context, color4, color4Dark)),
                               ),
                               actions: <Widget>[
                                 TextButton(
@@ -150,7 +167,8 @@ class _SettingPageState extends State<SettingPage> {
                                     Navigator.pop(context, 'Cancel');
                                   },
                                   style: TextButton.styleFrom(
-                                      foregroundColor: color4),
+                                      foregroundColor: getColorFinal(context,
+                                          color4, color4Dark)),
                                   child: const Text('Cancel'),
                                 ),
                                 TextButton(
@@ -159,7 +177,8 @@ class _SettingPageState extends State<SettingPage> {
                                     Navigator.pop(context, 'OK');
                                   },
                                   style: TextButton.styleFrom(
-                                      foregroundColor: color4),
+                                      foregroundColor: getColorFinal(context,
+                                          color4, color4Dark)),
                                   child: const Text('OK'),
                                 ),
                               ],
@@ -175,18 +194,18 @@ class _SettingPageState extends State<SettingPage> {
                     // );
                   },
                 ),
-                ListTile(
-                  title: const Text('기록 화면 설정'),
-                  onTap: () {
-                    final scaffoldMessenger = ScaffoldMessenger.of(context);
-
-                    scaffoldMessenger.showSnackBar(
-                      SnackBar(
-                        content: Text('기록 화면 설정하는 팝업'),
-                      ),
-                    );
-                  },
-                ),
+                // ListTile(
+                //   title: const Text('기록 화면 설정'),
+                //   onTap: () {
+                //     final scaffoldMessenger = ScaffoldMessenger.of(context);
+                //
+                //     scaffoldMessenger.showSnackBar(
+                //       SnackBar(
+                //         content: Text('기록 화면 설정하는 팝업'),
+                //       ),
+                //     );
+                //   },
+                // ),
 
                 // ListTile(
                 //   title: const Text('Privacy Policy'),

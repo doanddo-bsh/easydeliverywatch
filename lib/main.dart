@@ -49,28 +49,6 @@ class _MyAppState extends State<MyApp> {
       builder: (context, child) => MaterialApp(
         title: 'easy Delivery Watch',
         debugShowCheckedModeBanner: false,
-        // theme: ThemeData(
-        //   // primarySwatch:color1,
-        //   colorScheme: ColorScheme.fromSeed(
-        //       seedColor: color1,
-        //       brightness: Brightness.light,
-        //       // primaryContainer:color1,
-        //       primary: Colors.amber,
-        //
-        //   ),
-        //   useMaterial3: true,
-        //   // brightness: Brightness.light),
-        // ),
-        // darkTheme: ThemeData(
-        //   colorScheme: ColorScheme.fromSeed(
-        //       seedColor: color1,
-        //       brightness: Brightness.dark,
-        //       // primaryContainer:Colors.white,
-        //       // primary:Colors.red,
-        //   ),
-        //   useMaterial3: true,
-        //   // brightness: Brightness.dark),
-        // ),
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: color1,

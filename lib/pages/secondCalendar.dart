@@ -136,7 +136,7 @@ class _SecondCalendarState extends State<SecondCalendar> {
           elevation: 0,
           // backgroundColor: color1,
           // foregroundColor: Theme.of(context).colorScheme.onBackground,
-          backgroundColor: getColorFinal(context,color1,color1Dark),
+          backgroundColor: getColorFinal(context, color1, color1Dark),
         ),
         body: SafeArea(
             child: Column(
@@ -149,32 +149,32 @@ class _SecondCalendarState extends State<SecondCalendar> {
               focusedDay: _focusedDay,
               calendarFormat: _calendarFormat,
               headerStyle: HeaderStyle(
-                  formatButtonVisible: false,
-                  leftChevronIcon: Icon(
-                    Icons.chevron_left,
-                    color: getColorFinal(context, color13, color13Dark),
-                  ),
-                  rightChevronIcon: Icon(
-                    Icons.chevron_right,
-                    color: getColorFinal(context, color13, color13Dark),
-                  ),
+                formatButtonVisible: false,
+                leftChevronIcon: Icon(
+                  Icons.chevron_left,
+                  color: getColorFinal(context, color13, color13Dark),
+                ),
+                rightChevronIcon: Icon(
+                  Icons.chevron_right,
+                  color: getColorFinal(context, color13, color13Dark),
+                ),
               ),
               // 2weeks invisable
               calendarStyle: CalendarStyle(
                 markerSize: 5.5,
                 markersMaxCount: 3,
                 selectedDecoration: BoxDecoration(
-                  color: isSameDay(_selectedDay, _todayDay) ?
-                  getColorFinal(context,color2,color2Dark)
-                  : getColorFinal(context, color8, color8Dark),
+                  color: isSameDay(_selectedDay, _todayDay)
+                      ? getColorFinal(context, color2, color2Dark)
+                      : getColorFinal(context, color8, color8Dark),
                   shape: BoxShape.circle,
                 ),
                 todayDecoration: BoxDecoration(
-                  color: getColorFinal(context,color2,color2Dark),
+                  color: getColorFinal(context, color2, color2Dark),
                   shape: BoxShape.circle,
                 ),
                 markerDecoration: BoxDecoration(
-                  color: getColorFinal(context,color13,color13Dark),
+                  color: getColorFinal(context, color13, color13Dark),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -222,16 +222,28 @@ class _SecondCalendarState extends State<SecondCalendar> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              title: const Text('진통 기록 삭제'),
-                              content: const Text('해당 진통 기록을 '
-                                  '삭제하시겠습니까?'),
+                              title: Text('진통 기록 삭제',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    color: getColorFinal(
+                                        context, color13, color13Dark),
+                                  )),
+                              content: Text(
+                                  '해당 진통 기록을 '
+                                  '삭제하시겠습니까?',
+                                  style: TextStyle(
+                                    fontSize: 13.5,
+                                    color: getColorFinal(
+                                        context, color4, color4Dark),
+                                  )),
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
                                     Navigator.pop(context, 'Cancel');
                                   },
                                   style: TextButton.styleFrom(
-                                      foregroundColor: color4),
+                                      foregroundColor: getColorFinal(
+                                          context, color4, color4Dark)),
                                   child: const Text('Cancel'),
                                 ),
                                 TextButton(
@@ -250,7 +262,8 @@ class _SecondCalendarState extends State<SecondCalendar> {
                                     Navigator.pop(context, 'OK');
                                   },
                                   style: TextButton.styleFrom(
-                                      foregroundColor: color4),
+                                      foregroundColor: getColorFinal(
+                                          context, color4, color4Dark)),
                                   child: const Text('OK'),
                                 ),
                               ],
@@ -369,15 +382,22 @@ class _SecondCalendarState extends State<SecondCalendar> {
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                           ),
-                                          title: const Text('진통 기록 삭제',
+                                          title: Text('진통 기록 삭제',
                                               style: TextStyle(
-                                                  fontSize: 17, height: 1.5)),
-                                          content: const Text(
+                                                fontSize: 17,
+                                                color: getColorFinal(context,
+                                                    color13, color13Dark),
+                                              )),
+                                          content: Text(
                                               '해당 진통 기록을 '
                                               '삭제하시겠습니까?',
                                               style: TextStyle(
                                                   fontSize: 13.5,
-                                                  color: Color(0xFF7C7A7A))),
+                                                  color: getColorFinal(
+                                                      context, color4,
+                                                      color4Dark),
+                                              )
+                                          ),
                                           actions: <Widget>[
                                             TextButton(
                                               onPressed: () {
@@ -385,7 +405,9 @@ class _SecondCalendarState extends State<SecondCalendar> {
                                                     context, 'Cancel');
                                               },
                                               style: TextButton.styleFrom(
-                                                  foregroundColor: color4),
+                                                  foregroundColor: getColorFinal(
+                                                      context, color4,
+                                                      color4Dark)),
                                               child: const Text('Cancel'),
                                             ),
                                             TextButton(
@@ -405,7 +427,9 @@ class _SecondCalendarState extends State<SecondCalendar> {
                                                 Navigator.pop(context, 'OK');
                                               },
                                               style: TextButton.styleFrom(
-                                                  foregroundColor: color4),
+                                                  foregroundColor: getColorFinal(
+                                                      context, color4,
+                                                      color4Dark)),
                                               child: const Text('OK'),
                                             ),
                                           ],
