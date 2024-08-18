@@ -5,6 +5,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'myMainPage.dart';
 import 'dart:async';
 import '../regulation/initialize_screen.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import '../module/firebase_screen_view.dart';
 
 class SplashScreen extends StatefulWidget {
 
@@ -20,6 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+
+    logScreenView('splash 화면', 'SplashScreen');
+
     Timer(
       const Duration(milliseconds: 1000),
           () => Navigator.push(

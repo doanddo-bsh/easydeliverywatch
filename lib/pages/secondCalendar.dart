@@ -11,6 +11,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../module/color_def.dart';
 import 'thirdDetail.dart';
 import '../module/admob_class.dart';
+import '../module/firebase_screen_view.dart';
 
 class SecondCalendar extends StatefulWidget {
   final LinkedHashMap<DateTime, List<Event>> events;
@@ -38,6 +39,9 @@ class _SecondCalendarState extends State<SecondCalendar> {
   @override
   void initState() {
     super.initState();
+
+    logScreenView('달력 화면', 'SecondCalendar');
+
     _selectedDay = _focusedDay;
 
     _createBannerAd();

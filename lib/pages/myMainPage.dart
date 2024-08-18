@@ -19,6 +19,8 @@ import 'package:async_preferences/async_preferences.dart';
 import 'package:easydeliverywatch/regulation/initialization_helper.dart';
 import '../pageOption_1_basic/basic_myMainPage_body.dart';
 import '../pageOption_2_connecting/connecting_myMainPage_body.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import '../module/firebase_screen_view.dart';
 
 class MyMainPage extends StatelessWidget {
 
@@ -65,6 +67,8 @@ class _MyMainPageBodyState extends State<MyMainPageBody>
   @override
   void initState() {
     super.initState();
+
+    logScreenView('메인 기록 측정 화면', 'MyMainPageBody');
 
     // IDFA 대응
     WidgetsBinding.instance.addPostFrameCallback((_) => initPlugin());

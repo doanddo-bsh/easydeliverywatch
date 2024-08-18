@@ -5,6 +5,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../module/color_def.dart';
 import '../module/admob_class.dart';
 import 'logFormat_1_basic.dart';
+import '../module/firebase_screen_view.dart';
 
 class ThirdDetail extends StatefulWidget {
 
@@ -35,6 +36,9 @@ class _ThirdDetailState extends State<ThirdDetail> {
   @override
   void initState(){
     super.initState();
+
+    logScreenView('기록 재 확인 화면', 'ThirdDetail');
+
     _createBannerAd();
   }
 
