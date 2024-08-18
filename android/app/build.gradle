@@ -2,7 +2,6 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
-    id "com.google.gms.google-services"
 }
 
 def localProperties = new Properties()
@@ -56,7 +55,7 @@ android {
         targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        multiDexEnabled true
+//        multiDexEnabled true
     }
 
     signingConfigs {
@@ -87,11 +86,24 @@ flutter {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:multidex:1.0.3"
-    implementation("com.google.android.ump:user-messaging-platform:2.1.0")
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    implementation "com.android.support:multidex:1.0.3"
+//    implementation("com.google.android.ump:user-messaging-platform:2.1.0")
     implementation platform('com.google.firebase:firebase-bom:32.0.0')  // Firebase BOM 추가
     implementation 'com.google.firebase:firebase-analytics'  // 필요한 Firebase 모듈 추가
 }
 
 apply plugin: 'com.google.gms.google-services'
+
+// jave 설정 추가
+//java {
+//    toolchain {
+//        languageVersion = JavaLanguageVersion.of(8)
+//    }
+//}
+//
+//tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+//    kotlinOptions {
+//        jvmTarget = "1.8"
+//    }
+//}
