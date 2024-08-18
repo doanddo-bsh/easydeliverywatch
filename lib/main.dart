@@ -8,10 +8,14 @@ import '../module/color_def.dart';
 import 'package:provider/provider.dart';
 import 'module/darkThemeProvider.dart'; // ThemeProvider 파일 import
 import '../module/timerModul.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+
 
 Future<void> main() async {
   await initializeDateFormatting(); // 달력 한국어 활용 목적
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp]); // 가로모드 막기
   MobileAds.instance.initialize();
@@ -38,6 +42,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -49,6 +55,9 @@ class _MyAppState extends State<MyApp> {
       builder: (context, child) => MaterialApp(
         title: 'easy Delivery Watch',
         debugShowCheckedModeBanner: false,
+        navigatorObservers: [
+          FirebaseAnalyticsObserver(analytics: analytics),
+        ],
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: color1,
